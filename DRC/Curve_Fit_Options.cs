@@ -181,5 +181,19 @@ namespace DRC
             chart.set_data_modified(true);
             chart.draw_DRC(false, false);
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            chart.set_plateau1_fixed(false);
+            chart.set_plateau2_fixed(false);
+            chart.set_dip_fixed(false);
+            chart.set_ec50_1_fixed(false);
+            chart.set_ec50_2_fixed(false);
+            chart.set_slope1_fixed(false);
+            chart.set_slope2_fixed(false);
+
+            chart.set_data_modified(true);
+            chart.draw_DRC(false, false);
+        }
     }
 }

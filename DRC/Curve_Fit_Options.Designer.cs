@@ -54,6 +54,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.text_box_fix_slope2 = new System.Windows.Forms.TextBox();
             this.text_box_fix_slope1 = new System.Windows.Forms.TextBox();
+            this.button2 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btn_OK
@@ -168,7 +169,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(175, 229);
+            this.button1.Location = new System.Drawing.Point(175, 228);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 25;
@@ -272,11 +273,22 @@
             this.text_box_fix_slope1.Size = new System.Drawing.Size(100, 20);
             this.text_box_fix_slope1.TabIndex = 34;
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(94, 228);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 38;
+            this.button2.Text = "Reset Fix";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // Curve_Fit_Options
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(428, 263);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.text_box_fix_slope2);
             this.Controls.Add(this.label6);
@@ -338,5 +350,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox text_box_fix_slope2;
         private System.Windows.Forms.TextBox text_box_fix_slope1;
+        private System.Windows.Forms.Button button2;
     }
 }
