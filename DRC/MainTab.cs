@@ -178,7 +178,7 @@ namespace DRC
         private string input_filename;
         private string output_filename;
 
-        private Dictionary<string, List<Chart_DRC>> descriptors_chart = new Dictionary<string, List<Chart_DRC>>();
+        protected Dictionary<string, List<Chart_DRC>> descriptors_chart = new Dictionary<string, List<Chart_DRC>>();
         private Dictionary<string, List<Chart_DRC_Overlap>> descriptors_chart_overlap = new Dictionary<string, List<Chart_DRC_Overlap>>();
 
         private string current_compound;
@@ -4415,9 +4415,8 @@ namespace DRC
             }
         }
 
-
         public void apply_descriptor_fixed(string descriptor_name, double fixed_plateau1, double fixed_plateau2, double fixed_dip,
-            double fixed_ec50_1, double fixed_ec50_2, double fixed_slope1, double fixed_slope2)
+            double fixed_ec50_1, double fixed_ec50_2, double fixed_slope1, double fixed_slope2, bool[] if_fixed)
         {
             foreach (KeyValuePair<string, List<Chart_DRC>> elem in descriptors_chart)
             {
@@ -4429,27 +4428,47 @@ namespace DRC
                     if (current_chart.get_Descriptor_Name() == descriptor_name)
                     {
                         //current_chart.set_general_params(true);
+                        if (if_fixed[0])
+                        {
+                            current_chart.set_plateau1_fixed(true);
+                            current_chart.set_plateau1_fixed_value(fixed_plateau1);
+                        }
 
-                        current_chart.set_plateau1_fixed(true);
-                        current_chart.set_plateau1_fixed_value(fixed_plateau1);
+                        if (if_fixed[1])
+                        {
+                            current_chart.set_plateau2_fixed(true);
+                            current_chart.set_plateau2_fixed_value(fixed_plateau2);
+                        }
 
-                        current_chart.set_plateau2_fixed(true);
-                        current_chart.set_plateau2_fixed_value(fixed_plateau2);
+                        if (if_fixed[2])
+                        {
+                            current_chart.set_dip_fixed(true);
+                            current_chart.set_dip_fixed_value(fixed_dip);
+                        }
 
-                        current_chart.set_dip_fixed(true);
-                        current_chart.set_dip_fixed_value(fixed_dip);
+                        if (if_fixed[3])
+                        {
+                            current_chart.set_ec50_1_fixed(true);
+                            current_chart.set_ec50_1_fixed_value(fixed_ec50_1);
+                        }
 
-                        current_chart.set_ec50_1_fixed(true);
-                        current_chart.set_ec50_1_fixed_value(fixed_ec50_1);
+                        if (if_fixed[4])
+                        {
+                            current_chart.set_ec50_2_fixed(true);
+                            current_chart.set_ec50_2_fixed_value(fixed_ec50_2);
+                        }
 
-                        current_chart.set_ec50_2_fixed(true);
-                        current_chart.set_ec50_2_fixed_value(fixed_ec50_2);
+                        if (if_fixed[5])
+                        {
+                            current_chart.set_slope1_fixed(true);
+                            current_chart.set_slope1_fixed_value(fixed_slope1);
+                        }
 
-                        current_chart.set_slope1_fixed(true);
-                        current_chart.set_slope1_fixed_value(fixed_slope1);
-
-                        current_chart.set_slope2_fixed(true);
-                        current_chart.set_slope2_fixed_value(fixed_slope2);
+                        if (if_fixed[6])
+                        {
+                            current_chart.set_slope2_fixed(true);
+                            current_chart.set_slope2_fixed_value(fixed_slope2);
+                        }
 
                         current_chart.set_data_modified(true);
                         current_chart.draw_DRC(false, false);
@@ -4466,13 +4485,63 @@ namespace DRC
             {
                 descriptors_fix_top_form = new Descriptors_Fix_Top_Options(this);
 
-                Label label_window_min_x = new Label();
-                label_window_min_x.Location = new Point(100, 20);
-                label_window_min_x.Text = "Top/Bottom";
-                label_window_min_x.Name = "lbl_fix_top_bottom";
-                label_window_min_x.AutoSize = true;
 
-                descriptors_fix_top_form.Controls.Add(label_window_min_x);
+                Label label_plateau1 = new Label();
+                label_plateau1.Location = new Point(125, 20);
+                label_plateau1.Text = "Plateau1";
+                label_plateau1.Name = "lbl_descriptor_Plateau1";
+                label_plateau1.AutoSize = true;
+
+                descriptors_fix_top_form.Controls.Add(label_plateau1);
+
+                Label label_plateau2 = new Label();
+                label_plateau2.Location = new Point(250, 20);
+                label_plateau2.Text = "Plateau2";
+                label_plateau2.Name = "lbl_descriptor_Plateau2";
+                label_plateau2.AutoSize = true;
+
+                descriptors_fix_top_form.Controls.Add(label_plateau2);
+
+                Label label_dip = new Label();
+                label_dip.Location = new Point(375, 20);
+                label_dip.Text = "Dip";
+                label_dip.Name = "lbl_descriptor_dip";
+                label_dip.AutoSize = true;
+
+                descriptors_fix_top_form.Controls.Add(label_dip);
+
+                Label label_ec50_1 = new Label();
+                label_ec50_1.Location = new Point(500, 20);
+                label_ec50_1.Text = "EC50_1";
+                label_ec50_1.Name = "lbl_descriptor_ec50_1";
+                label_ec50_1.AutoSize = true;
+
+                descriptors_fix_top_form.Controls.Add(label_ec50_1);
+
+                Label label_ec50_2 = new Label();
+                label_ec50_2.Location = new Point(625, 20);
+                label_ec50_2.Text = "EC50_2";
+                label_ec50_2.Name = "lbl_descriptor_ec50_2";
+                label_ec50_2.AutoSize = true;
+
+                descriptors_fix_top_form.Controls.Add(label_ec50_2);
+
+
+                Label label_slope1 = new Label();
+                label_slope1.Location = new Point(750, 20);
+                label_slope1.Text = "Slope1";
+                label_slope1.Name = "lbl_descriptor_slope1";
+                label_slope1.AutoSize = true;
+
+                descriptors_fix_top_form.Controls.Add(label_slope1);
+
+                Label label_slope2 = new Label();
+                label_slope2.Location = new Point(875, 20);
+                label_slope2.Text = "Slope1";
+                label_slope2.Name = "lbl_descriptor_slope2";
+                label_slope2.AutoSize = true;
+
+                descriptors_fix_top_form.Controls.Add(label_slope2);
 
                 int counter = 0;
 
@@ -4492,23 +4561,113 @@ namespace DRC
 
                     descriptors_fix_top_form.Controls.Add(new_label);
 
-                    TextBox text_boxfix_top = new TextBox();
-                    text_boxfix_top.Location = new Point(90, 15 + (counter + 1) * 25);
-                    text_boxfix_top.Name = "txt_box_fix_top_descriptor_" + descritpor_name;
+                    TextBox text_boxfix_plateau1 = new TextBox();
+                    text_boxfix_plateau1.Location = new Point(125, 15 + (counter + 1) * 25);
+                    text_boxfix_plateau1.Name = "txt_box_fix_plateau1_descriptor_" + descritpor_name;
 
                     if (current_chart.plateau1_fixed())
                     {
-                        text_boxfix_top.Text = current_chart.get_plateau1_fixed().ToString();
+                        text_boxfix_plateau1.Text = current_chart.get_plateau1_fixed().ToString();
                     }
                     else
                     {
-                        text_boxfix_top.Text = "";
+                        text_boxfix_plateau1.Text = "";
                     }
 
-                    descriptors_fix_top_form.Controls.Add(text_boxfix_top);
+                    descriptors_fix_top_form.Controls.Add(text_boxfix_plateau1);
+
+                    TextBox text_boxfix_plateau2 = new TextBox();
+                    text_boxfix_plateau2.Location = new Point(250, 15 + (counter + 1) * 25);
+                    text_boxfix_plateau2.Name = "txt_box_fix_plateau2_descriptor_" + descritpor_name;
+
+                    if (current_chart.plateau2_fixed())
+                    {
+                        text_boxfix_plateau2.Text = current_chart.get_plateau2_fixed().ToString();
+                    }
+                    else
+                    {
+                        text_boxfix_plateau2.Text = "";
+                    }
+
+                    descriptors_fix_top_form.Controls.Add(text_boxfix_plateau2);
+
+                    TextBox text_boxfix_dip = new TextBox();
+                    text_boxfix_dip.Location = new Point(375, 15 + (counter + 1) * 25);
+                    text_boxfix_dip.Name = "txt_box_fix_dip_descriptor_" + descritpor_name;
+
+                    if (current_chart.dip_fixed())
+                    {
+                        text_boxfix_dip.Text = current_chart.get_dip_fixed().ToString();
+                    }
+                    else
+                    {
+                        text_boxfix_dip.Text = "";
+                    }
+
+                    descriptors_fix_top_form.Controls.Add(text_boxfix_dip);
+
+                    TextBox text_boxfix_ec50_1 = new TextBox();
+                    text_boxfix_ec50_1.Location = new Point(500, 15 + (counter + 1) * 25);
+                    text_boxfix_ec50_1.Name = "txt_box_fix_ec50_1_descriptor_" + descritpor_name;
+
+                    if (current_chart.ec50_1_fixed())
+                    {
+                        text_boxfix_ec50_1.Text = current_chart.get_ec50_1_fixed().ToString();
+                    }
+                    else
+                    {
+                        text_boxfix_ec50_1.Text = "";
+                    }
+
+                    descriptors_fix_top_form.Controls.Add(text_boxfix_ec50_1);
+
+                    TextBox text_boxfix_ec50_2 = new TextBox();
+                    text_boxfix_ec50_2.Location = new Point(625, 15 + (counter + 1) * 25);
+                    text_boxfix_ec50_2.Name = "txt_box_fix_ec50_2_descriptor_" + descritpor_name;
+
+                    if (current_chart.ec50_2_fixed())
+                    {
+                        text_boxfix_ec50_2.Text = current_chart.get_ec50_2_fixed().ToString();
+                    }
+                    else
+                    {
+                        text_boxfix_ec50_2.Text = "";
+                    }
+
+                    descriptors_fix_top_form.Controls.Add(text_boxfix_ec50_2);
+
+                    TextBox text_boxfix_slope1 = new TextBox();
+                    text_boxfix_slope1.Location = new Point(750, 15 + (counter + 1) * 25);
+                    text_boxfix_slope1.Name = "txt_box_fix_slope1_descriptor_" + descritpor_name;
+
+                    if (current_chart.slope1_fixed())
+                    {
+                        text_boxfix_slope1.Text = current_chart.get_slope1_fixed().ToString();
+                    }
+                    else
+                    {
+                        text_boxfix_slope1.Text = "";
+                    }
+
+                    descriptors_fix_top_form.Controls.Add(text_boxfix_slope1);
+
+                    TextBox text_boxfix_slope2 = new TextBox();
+                    text_boxfix_slope2.Location = new Point(875, 15 + (counter + 1) * 25);
+                    text_boxfix_slope2.Name = "txt_box_fix_slope2_descriptor_" + descritpor_name;
+
+                    if (current_chart.slope2_fixed())
+                    {
+                        text_boxfix_slope2.Text = current_chart.get_slope1_fixed().ToString();
+                    }
+                    else
+                    {
+                        text_boxfix_slope2.Text = "";
+                    }
+
+                    descriptors_fix_top_form.Controls.Add(text_boxfix_slope2);
 
                     Button apply_button = new Button();
-                    apply_button.Location = new Point(200, 15 + (counter + 1) * 25);
+                    apply_button.Location = new Point(1000, 15 + (counter + 1) * 25);
                     apply_button.Name = "button_apply_descriptor_" + descritpor_name;
                     apply_button.Text = "Apply";
 
@@ -4519,7 +4678,16 @@ namespace DRC
                     counter++;
                 }
 
+                //Button reset_button = new Button();
+                //reset_button.Location = new Point(1100, 15 + (counter + 1) * 25);
+                //reset_button.Name = "button_reset";
+                //reset_button.Text = "Reset";
+
+                //reset_button.Click += new EventHandler(this.btn_clicked_reset_fix);
+
+                //descriptors_fix_top_form.Controls.Add(reset_button);
             }
+
 
             descriptors_fix_top_form.Visible = true;
         }
@@ -4550,21 +4718,51 @@ namespace DRC
                         TextBox txt_box_slope1 = descriptors_fix_top_form.Controls["txt_box_fix_slope1_descriptor_" + descriptor_name] as TextBox;
                         TextBox txt_box_slope2 = descriptors_fix_top_form.Controls["txt_box_fix_slope2_descriptor_" + descriptor_name] as TextBox;
 
-                        fixed_plateau1 = double.Parse(txt_box_plateau1.Text.ToString());
-                        fixed_plateau2 = double.Parse(txt_box_plateau2.Text.ToString());
-                        fixed_dip = double.Parse(txt_box_dip.Text.ToString());
-                        fixed_ec50_1 = double.Parse(txt_box_ec50_1.Text.ToString());
-                        fixed_ec50_2 = double.Parse(txt_box_ec50_2.Text.ToString());
-                        fixed_slope1 = double.Parse(txt_box_slope1.Text.ToString());
-                        fixed_slope2 = double.Parse(txt_box_slope2.Text.ToString());
+                        bool if_plateau1_fixed = Double.TryParse(txt_box_plateau1.Text.ToString(), out fixed_plateau1);
+                        bool if_plateau2_fixed = Double.TryParse(txt_box_plateau2.Text.ToString(), out fixed_plateau2);
+                        bool if_dip_fixed = Double.TryParse(txt_box_dip.Text.ToString(), out fixed_dip);
+                        bool if_ec50_1_fixed = Double.TryParse(txt_box_ec50_1.Text.ToString(), out fixed_ec50_1);
+                        bool if_ec50_2_fixed = Double.TryParse(txt_box_ec50_2.Text.ToString(), out fixed_ec50_2);
+                        bool if_slope1_fixed = Double.TryParse(txt_box_slope1.Text.ToString(), out fixed_slope1);
+                        bool if_slope2_fixed = Double.TryParse(txt_box_slope2.Text.ToString(), out fixed_slope2);
+
+                        bool[] if_fixed = { if_plateau1_fixed, if_plateau2_fixed, if_dip_fixed, if_ec50_1_fixed, if_ec50_2_fixed, if_slope1_fixed, if_slope2_fixed };
 
                         apply_descriptor_fixed(descriptor_name, fixed_plateau1, fixed_plateau2, fixed_dip,
-                            fixed_ec50_1, fixed_ec50_2, fixed_slope1, fixed_slope2);
+                            fixed_ec50_1, fixed_ec50_2, fixed_slope1, fixed_slope2, if_fixed);
                     }
                 }
             }
 
         }
+
+        //private void btn_clicked_reset_fix(object sender, EventArgs e)
+        //{
+        //    Button btn = (Button)sender;
+
+        //    foreach (string descriptor_name in descriptor_list)
+        //    {
+        //        foreach (KeyValuePair<string, List<Chart_DRC>> elem in descriptors_chart)
+        //        {
+        //            string BATCH_ID = elem.Key;
+        //            List<Chart_DRC> cpd_charts = elem.Value;
+
+        //            foreach (Chart_DRC current_chart in cpd_charts)
+        //            {
+        //                if (current_chart.get_Descriptor_Name() == descriptor_name)
+        //                {
+        //                    current_chart.set_plateau1_fixed(false);
+        //                    current_chart.set_plateau2_fixed(false);
+        //                    current_chart.set_dip_fixed(false);
+        //                    current_chart.set_ec50_1_fixed(false);
+        //                    current_chart.set_ec50_2_fixed(false);
+        //                    current_chart.set_slope1_fixed(false);
+        //                    current_chart.set_slope2_fixed(false);
+        //                }
+        //            }
+        //        }
+        //    }
+        //}
 
         private double Median(List<double> xs)
         {
