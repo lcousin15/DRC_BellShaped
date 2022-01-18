@@ -7555,7 +7555,7 @@ namespace DRC
         //    }
         //}
 
-        private static void function_BellShaped(double[] c, double[] x, ref double func, object obj)
+        private void function_BellShaped(double[] c, double[] x, ref double func, object obj)
         {
             // plateau1 = c[0]
             // plateau2 = c[1]
@@ -7565,8 +7565,24 @@ namespace DRC
             // nH1 slope1 = c[5]
             // nH2 slope2 = c[6]
 
-            double Sp1 = c[0] - c[2] + 0.0001;
-            double Sp2 = c[1] - c[2] + 0.0001;
+            //if (is_plateau1_fixed) c[0] = plateau1_fixed;
+            //if (is_plateau2_fixed) c[1] = plateau1_fixed;
+            //if (is_plateau3_fixed) c[2] = dip_fixed;
+            //if (is_ec50_1_fixed) c[3] = ec50_1_fixed;
+            //if (is_ec50_2_fixed) c[4] = ec50_2_fixed;
+            //if (is_slope1_fixed) c[5] = slope1_fixed;
+            //if (is_slope2_fixed) c[6] = slope1_fixed;
+
+            if (is_plateau1_fixed) c[0] = get_plateau1_fixed();
+            if (is_plateau2_fixed) c[1] = get_plateau2_fixed();
+            if (is_dip_fixed) c[2] = get_dip_fixed();
+            if (is_ec50_1_fixed) c[3] = get_ec50_1_fixed();
+            if (is_ec50_2_fixed) c[4] = get_ec50_2_fixed();
+            if (is_slope1_fixed) c[5] = get_slope1_fixed();
+            if (is_slope2_fixed) c[6] = get_slope2_fixed();
+
+            double Sp1 = c[0] - c[2];
+            double Sp2 = c[1] - c[2];
 
             double S1 = Sp1 / (1 + Math.Pow(10, ((c[3] - x[0]) * c[5])));
             double S2 = Sp2 / (1 + Math.Pow(10, ((x[0] - c[4]) * c[6])));

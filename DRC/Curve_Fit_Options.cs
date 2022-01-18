@@ -148,7 +148,7 @@ namespace DRC
             }
             else chart.set_ec50_1_fixed(true);
 
-            if (text_box_fix_ec50_1.Text != "")
+            if (text_box_fix_ec50_2.Text != "")
             {
                 chart.set_ec50_2_fixed(true);
                 ec50_2_fixed = double.Parse(text_box_fix_ec50_2.Text.ToString());
