@@ -931,9 +931,9 @@ namespace DRC
             foreach (var item in checkedListBox1.CheckedItems)
             {
                 f2.dataGridView2.Columns[j * output_parameter_number + 1].Name = "EC50_1  " + item.ToString();
-                f2.dataGridView2.Columns[j * output_parameter_number + 2].Name = "EC50_1 " + item.ToString();
-                f2.dataGridView2.Columns[j * output_parameter_number + 3].Name = "Bottom " + item.ToString();
-                f2.dataGridView2.Columns[j * output_parameter_number + 4].Name = "Top " + item.ToString();
+                f2.dataGridView2.Columns[j * output_parameter_number + 2].Name = "EC50_2 " + item.ToString();
+                f2.dataGridView2.Columns[j * output_parameter_number + 3].Name = "Plateau1 " + item.ToString();
+                f2.dataGridView2.Columns[j * output_parameter_number + 4].Name = "Plateau2 " + item.ToString();
                 f2.dataGridView2.Columns[j * output_parameter_number + 5].Name = "Dip " + item.ToString();
                 f2.dataGridView2.Columns[j * output_parameter_number + 6].Name = "Slope1 " + item.ToString();
                 f2.dataGridView2.Columns[j * output_parameter_number + 7].Name = "Slope2 " + item.ToString();
@@ -4430,25 +4430,25 @@ namespace DRC
                     {
                         //current_chart.set_general_params(true);
 
-                        //current_chart.set_plateau1_fixed(true);
+                        current_chart.set_plateau1_fixed(true);
                         current_chart.set_plateau1_fixed_value(fixed_plateau1);
 
-                        //current_chart.set_plateau2_fixed(true);
+                        current_chart.set_plateau2_fixed(true);
                         current_chart.set_plateau2_fixed_value(fixed_plateau2);
 
-                        //current_chart.set_dip_fixed(true);
+                        current_chart.set_dip_fixed(true);
                         current_chart.set_dip_fixed_value(fixed_dip);
 
-                        //current_chart.set_ec50_1_fixed(true);
+                        current_chart.set_ec50_1_fixed(true);
                         current_chart.set_ec50_1_fixed_value(fixed_ec50_1);
 
-                        //current_chart.set_ec50_2_fixed(true);
+                        current_chart.set_ec50_2_fixed(true);
                         current_chart.set_ec50_2_fixed_value(fixed_ec50_2);
 
-                        //current_chart.set_slope1_fixed(true);
+                        current_chart.set_slope1_fixed(true);
                         current_chart.set_slope1_fixed_value(fixed_slope1);
 
-                        //current_chart.set_slope2_fixed(true);
+                        current_chart.set_slope2_fixed(true);
                         current_chart.set_slope2_fixed_value(fixed_slope2);
 
                         current_chart.set_data_modified(true);
@@ -6797,6 +6797,41 @@ namespace DRC
             return fixed_slope2;
         }
 
+        public void set_plateau1_fixed(bool val)
+        {
+            is_plateau1_fixed = val;
+        }
+
+        public void set_plateau2_fixed(bool val)
+        {
+            is_plateau2_fixed = val;
+        }
+
+        public void set_dip_fixed(bool val)
+        {
+            is_dip_fixed = val;
+        }
+
+        public void set_ec50_1_fixed(bool val)
+        {
+            is_ec50_1_fixed = val;
+        }
+
+        public void set_ec50_2_fixed(bool val)
+        {
+            is_ec50_2_fixed = val;
+        }
+
+        public void set_slope1_fixed(bool val)
+        {
+            is_slope1_fixed = val;
+        }
+
+        public void set_slope2_fixed(bool val)
+        {
+            is_slope2_fixed = val;
+        }
+
         public void set_plateau1_fixed_value(double val)
         {
             fixed_plateau1 = val;
@@ -7109,13 +7144,13 @@ namespace DRC
                 set_manual_bound(true);
                 set_general_params(false);
 
-                //set_plateau1_fixed(true);
+                set_plateau1_fixed(true);
 
                 //set_data_modified(true);
             }
             else
             {
-                //set_plateau1_fixed(false);
+                set_plateau1_fixed(false);
             }
 
             double fixed_plateau2_val;
@@ -7130,13 +7165,13 @@ namespace DRC
                 set_manual_bound(true);
                 set_general_params(false);
 
-                //set_plateau2_fixed(true);
+                set_plateau2_fixed(true);
 
                 //set_data_modified(true);
             }
             else
             {
-                //set_plateau2_fixed(false);
+                set_plateau2_fixed(false);
             }
 
             double fixed_dip_val;
@@ -7151,13 +7186,13 @@ namespace DRC
                 set_manual_bound(true);
                 set_general_params(false);
 
-                //set_dip_fixed(true);
+                set_dip_fixed(true);
 
                 //set_data_modified(true);
             }
             else
             {
-                //set_dip_fixed(false);
+                set_dip_fixed(false);
             }
 
             double fixed_ec50_1_val;
@@ -7172,13 +7207,13 @@ namespace DRC
                 set_manual_bound(true);
                 set_general_params(false);
 
-                //set_ec50_1_fixed(true);
+                set_ec50_1_fixed(true);
 
                 //set_data_modified(true);
             }
             else
             {
-                //set_ec50_1_fixed(false);
+                set_ec50_1_fixed(false);
             }
 
             double fixed_ec50_2_val;
@@ -7193,13 +7228,13 @@ namespace DRC
                 set_manual_bound(true);
                 set_general_params(false);
 
-                //set_ec50_2_fixed(true);
+                set_ec50_2_fixed(true);
 
                 //set_data_modified(true);
             }
             else
             {
-                //set_ec50_2_fixed(false);
+                set_ec50_2_fixed(false);
             }
 
             double fixed_slope1_val;
@@ -7214,13 +7249,13 @@ namespace DRC
                 set_manual_bound(true);
                 set_general_params(false);
 
-                //set_slope1_fixed(true);
+                set_slope1_fixed(true);
 
                 //set_data_modified(true);
             }
             else
             {
-                //set_slope1_fixed(false);
+                set_slope1_fixed(false);
             }
 
             double fixed_slope2_val;
@@ -7235,13 +7270,13 @@ namespace DRC
                 set_manual_bound(true);
                 set_general_params(false);
 
-                //set_slope2_fixed(true);
+                set_slope2_fixed(true);
 
                 //set_data_modified(true);
             }
             else
             {
-                //set_slope2_fixed(false);
+                set_slope2_fixed(false);
             }
 
             y_response = resp.ToList();

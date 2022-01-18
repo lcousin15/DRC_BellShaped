@@ -64,13 +64,13 @@ namespace DRC
             chart.set_bound_status(false);
             chart.set_manual_bound(true);
             chart.set_general_params(false);
-            //chart.set_plateau1_fixed(false);
-            //chart.set_plateau2_fixed(false);
-            //chart.set_dip_fixed(false);
-            //chart.set_ec50_1_fixed(false);
-            //chart.set_ec50_2_fixed(false);
-            //chart.set_slope1_fixed(false);
-            //chart.set_slope2_fixed(false);
+            chart.set_plateau1_fixed(false);
+            chart.set_plateau2_fixed(false);
+            chart.set_dip_fixed(false);
+            chart.set_ec50_1_fixed(false);
+            chart.set_ec50_2_fixed(false);
+            chart.set_slope1_fixed(false);
+            chart.set_slope2_fixed(false);
 
             chart.set_data_modified(true);
 
@@ -92,13 +92,13 @@ namespace DRC
             chart.set_bound_status(true);
             chart.set_manual_bound(true);
             chart.set_general_params(false);
-            //chart.set_plateau1_fixed(false);
-            //chart.set_plateau2_fixed(false);
-            //chart.set_dip_fixed(false);
-            //chart.set_ec50_1_fixed(false);
-            //chart.set_ec50_2_fixed(false);
-            //chart.set_slope1_fixed(false);
-            //chart.set_slope2_fixed(false);
+            chart.set_plateau1_fixed(false);
+            chart.set_plateau2_fixed(false);
+            chart.set_dip_fixed(false);
+            chart.set_ec50_1_fixed(false);
+            chart.set_ec50_2_fixed(false);
+            chart.set_slope1_fixed(false);
+            chart.set_slope2_fixed(false);
             chart.set_data_modified(false);
 
             chart.draw_DRC(false, false);
@@ -116,34 +116,69 @@ namespace DRC
 
         private void button1_Click(object sender, EventArgs e)
         {
-            plateau1_fixed = double.Parse(text_box_fix_plateau1.Text.ToString());
-            plateau1_fixed = double.Parse(text_box_fix_plateau1.Text.ToString());
-            dip_fixed = double.Parse(text_box_fix_dip.Text.ToString());
-            ec50_1_fixed = double.Parse(text_box_fix_ec50_1.Text.ToString());
-            ec50_2_fixed = double.Parse(text_box_fix_ec50_2.Text.ToString());
-            slope1_fixed = double.Parse(text_box_fix_slope1.Text.ToString());
-            slope2_fixed = double.Parse(text_box_fix_slope2.Text.ToString());
+            if (text_box_fix_plateau1.Text != "")
+            {
+                chart.set_plateau1_fixed(true);
+                plateau1_fixed = double.Parse(text_box_fix_plateau1.Text.ToString());
+                chart.set_plateau1_fixed_value(plateau1_fixed);
+            }
+            else chart.set_plateau1_fixed(false);
+
+            if (text_box_fix_plateau2.Text != "")
+            {
+                chart.set_plateau2_fixed(true);
+                plateau2_fixed = double.Parse(text_box_fix_plateau2.Text.ToString());
+                chart.set_plateau2_fixed_value(plateau2_fixed);
+            }
+            else chart.set_plateau2_fixed(false);
+
+            if (text_box_fix_dip.Text != "")
+            {
+                chart.set_dip_fixed(true);
+                dip_fixed = double.Parse(text_box_fix_dip.Text.ToString());
+                chart.set_dip_fixed_value(dip_fixed);
+            }
+            else chart.set_dip_fixed(false);
+
+            if (text_box_fix_ec50_1.Text != "")
+            {
+                chart.set_ec50_1_fixed(true);
+                ec50_1_fixed = double.Parse(text_box_fix_ec50_1.Text.ToString());
+                chart.set_ec50_1_fixed_value(ec50_1_fixed);
+            }
+            else chart.set_ec50_1_fixed(true);
+
+            if (text_box_fix_ec50_1.Text != "")
+            {
+                chart.set_ec50_2_fixed(true);
+                ec50_2_fixed = double.Parse(text_box_fix_ec50_2.Text.ToString());
+                chart.set_ec50_2_fixed_value(ec50_2_fixed);
+            }
+            else chart.set_ec50_2_fixed(false);
+
+            if (text_box_fix_slope1.Text != "")
+            {
+                chart.set_slope1_fixed(true);
+                slope1_fixed = double.Parse(text_box_fix_slope1.Text.ToString());
+                chart.set_slope1_fixed_value(slope1_fixed);
+
+            }
+            else chart.set_slope1_fixed(false);
+
+            if (text_box_fix_slope2.Text != "")
+            {
+                chart.set_slope2_fixed(true);
+                chart.set_slope2_fixed_value(slope2_fixed);
+                slope2_fixed = double.Parse(text_box_fix_slope2.Text.ToString());
+            }
+            else chart.set_slope2_fixed(false);
+
 
             chart.set_bound_status(true);
             chart.set_manual_bound(true);
             chart.set_general_params(false);
-            //chart.set_plateau1_fixed(false);
-            //chart.set_plateau2_fixed(false);
-            //chart.set_dip_fixed(false);
-            //chart.set_ec50_1_fixed(false);
-            //chart.set_ec50_2_fixed(false);
-            //chart.set_slope1_fixed(false);
-            //chart.set_slope2_fixed(false);
+
             chart.set_data_modified(true);
-
-            chart.set_plateau1_fixed_value(plateau1_fixed);
-            chart.set_plateau2_fixed_value(plateau2_fixed);
-            chart.set_dip_fixed_value(dip_fixed);
-            chart.set_ec50_1_fixed_value(ec50_1_fixed);
-            chart.set_ec50_2_fixed_value(ec50_2_fixed);
-            chart.set_slope1_fixed_value(slope1_fixed);
-            chart.set_slope2_fixed_value(slope2_fixed);
-
             chart.draw_DRC(false, false);
         }
     }
