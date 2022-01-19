@@ -51,8 +51,8 @@ namespace DRC
             chart.set_manual_bound(true);
             chart.set_bound_status(false);
 
-            txt_max_bound_plateau1.Text = chart.get_min_bound_plateau1().ToString();
-            txt_min_bound_plateau1.Text = chart.get_max_bound_plateau1().ToString();
+            txt_min_bound_plateau1.Text = chart.get_min_bound_plateau1().ToString();
+            txt_max_bound_plateau1.Text = chart.get_max_bound_plateau1().ToString();
             txt_min_bound_plateau2.Text = chart.get_min_bound_plateau2().ToString();
             txt_max_bound_plateau2.Text = chart.get_max_bound_plateau2().ToString();
             txt_min_bound_dip.Text = chart.get_min_bound_dip().ToString();
@@ -165,8 +165,8 @@ namespace DRC
 
             chart.draw_DRC(false, false);
 
-            txt_max_bound_plateau1.Text = chart.get_min_bound_plateau1().ToString();
-            txt_min_bound_plateau1.Text = chart.get_max_bound_plateau1().ToString();
+            txt_min_bound_plateau1.Text = chart.get_min_bound_plateau1().ToString();
+            txt_max_bound_plateau1.Text = chart.get_max_bound_plateau1().ToString();
             txt_min_bound_plateau2.Text = chart.get_min_bound_plateau2().ToString();
             txt_max_bound_plateau2.Text = chart.get_max_bound_plateau2().ToString();
             txt_min_bound_dip.Text = chart.get_min_bound_dip().ToString();

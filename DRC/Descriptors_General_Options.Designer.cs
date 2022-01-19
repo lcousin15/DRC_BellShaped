@@ -42,7 +42,7 @@
             // 
             // btn_ok
             // 
-            this.btn_ok.Location = new System.Drawing.Point(661, 298);
+            this.btn_ok.Location = new System.Drawing.Point(879, 299);
             this.btn_ok.Name = "btn_ok";
             this.btn_ok.Size = new System.Drawing.Size(99, 25);
             this.btn_ok.TabIndex = 0;
@@ -52,7 +52,7 @@
             // 
             // btn_apply
             // 
-            this.btn_apply.Location = new System.Drawing.Point(661, 267);
+            this.btn_apply.Location = new System.Drawing.Point(879, 268);
             this.btn_apply.Name = "btn_apply";
             this.btn_apply.Size = new System.Drawing.Size(99, 25);
             this.btn_apply.TabIndex = 1;
@@ -66,7 +66,7 @@
             this.toolStripProgressBar1});
             this.statusStrip1.Location = new System.Drawing.Point(0, 673);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(783, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(997, 22);
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -77,7 +77,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(661, 296);
+            this.button1.Location = new System.Drawing.Point(879, 298);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(99, 25);
             this.button1.TabIndex = 3;
@@ -91,7 +91,7 @@
             this.panel1.Controls.Add(this.button1);
             this.panel1.Location = new System.Drawing.Point(7, 6);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(770, 328);
+            this.panel1.Size = new System.Drawing.Size(984, 328);
             this.panel1.TabIndex = 4;
             // 
             // panel2
@@ -101,14 +101,14 @@
             this.panel2.Controls.Add(this.btn_ok);
             this.panel2.Location = new System.Drawing.Point(7, 340);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(772, 330);
+            this.panel2.Size = new System.Drawing.Size(984, 330);
             this.panel2.TabIndex = 5;
             // 
             // Descriptors_General_Options
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(783, 695);
+            this.ClientSize = new System.Drawing.Size(997, 695);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.statusStrip1);

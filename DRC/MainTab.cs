@@ -4186,87 +4186,87 @@ namespace DRC
 
                 Label label_bnd_min_plateau1 = new Label();
                 label_bnd_min_plateau1.Location = new Point(125, 20);
-                label_bnd_min_plateau1.Text = "Lower Plateau1";
+                label_bnd_min_plateau1.Text = "Bounds Plateau1";
                 label_bnd_min_plateau1.Name = "lbl_bnd_min_plateau1";
                 label_bnd_min_plateau1.AutoSize = true;
 
-                Label label_bnd_max_plateau1 = new Label();
-                label_bnd_max_plateau1.Location = new Point(125, 50);
-                label_bnd_max_plateau1.Text = "Upper Plateau1";
-                label_bnd_max_plateau1.Name = "lbl_bnd_max_plateau1";
-                label_bnd_max_plateau1.AutoSize = true;
+                //Label label_bnd_max_plateau1 = new Label();
+                //label_bnd_max_plateau1.Location = new Point(125, 50);
+                //label_bnd_max_plateau1.Text = "Upper Plateau1";
+                //label_bnd_max_plateau1.Name = "lbl_bnd_max_plateau1";
+                //label_bnd_max_plateau1.AutoSize = true;
 
                 Label label_bnd_min_plateau2 = new Label();
                 label_bnd_min_plateau2.Location = new Point(250, 20);
-                label_bnd_min_plateau2.Text = "Lower Plateau2";
+                label_bnd_min_plateau2.Text = "Bounds Plateau2";
                 label_bnd_min_plateau2.Name = "lbl_bnd_min_plateau2";
                 label_bnd_min_plateau2.AutoSize = true;
 
-                Label label_bnd_max_plateau2 = new Label();
-                label_bnd_max_plateau2.Location = new Point(250, 50);
-                label_bnd_max_plateau2.Text = "Upper Plateau2";
-                label_bnd_max_plateau2.Name = "lbl_bnd_max_plateau2";
-                label_bnd_max_plateau2.AutoSize = true;
+                //Label label_bnd_max_plateau2 = new Label();
+                //label_bnd_max_plateau2.Location = new Point(250, 50);
+                //label_bnd_max_plateau2.Text = "Upper Plateau2";
+                //label_bnd_max_plateau2.Name = "lbl_bnd_max_plateau2";
+                //label_bnd_max_plateau2.AutoSize = true;
 
                 Label label_bnd_min_dip = new Label();
                 label_bnd_min_dip.Location = new Point(375, 20);
-                label_bnd_min_dip.Text = "Lower Dip";
+                label_bnd_min_dip.Text = "Bounds Dip";
                 label_bnd_min_dip.Name = "lbl_bnd_min_dip";
                 label_bnd_min_dip.AutoSize = true;
 
-                Label label_bnd_max_dip = new Label();
-                label_bnd_max_dip.Location = new Point(375, 50);
-                label_bnd_max_dip.Text = "Upper Dip";
-                label_bnd_max_dip.Name = "lbl_bnd_max_dip";
-                label_bnd_max_dip.AutoSize = true;
+                //Label label_bnd_max_dip = new Label();
+                //label_bnd_max_dip.Location = new Point(375, 50);
+                //label_bnd_max_dip.Text = "Upper Dip";
+                //label_bnd_max_dip.Name = "lbl_bnd_max_dip";
+                //label_bnd_max_dip.AutoSize = true;
 
                 Label label_bnd_min_ec50_1 = new Label();
                 label_bnd_min_ec50_1.Location = new Point(500, 20);
-                label_bnd_min_ec50_1.Text = "Lower EC50_1";
+                label_bnd_min_ec50_1.Text = "Bounds EC50_1";
                 label_bnd_min_ec50_1.Name = "lbl_bnd_min_ec50_1";
                 label_bnd_min_ec50_1.AutoSize = true;
 
-                Label label_bnd_max_ec50_1 = new Label();
-                label_bnd_max_ec50_1.Location = new Point(500, 50);
-                label_bnd_max_ec50_1.Text = "Upper EC50_1";
-                label_bnd_max_ec50_1.Name = "lbl_bnd_max_ec50_1";
-                label_bnd_max_ec50_1.AutoSize = true;
+                //Label label_bnd_max_ec50_1 = new Label();
+                //label_bnd_max_ec50_1.Location = new Point(500, 50);
+                //label_bnd_max_ec50_1.Text = "Upper EC50_1";
+                //label_bnd_max_ec50_1.Name = "lbl_bnd_max_ec50_1";
+                //label_bnd_max_ec50_1.AutoSize = true;
 
                 Label label_bnd_min_ec50_2 = new Label();
                 label_bnd_min_ec50_2.Location = new Point(625, 20);
-                label_bnd_min_ec50_2.Text = "Lower EC50_2";
+                label_bnd_min_ec50_2.Text = "Bounds EC50_2";
                 label_bnd_min_ec50_2.Name = "lbl_bnd_min_ec50_2";
                 label_bnd_min_ec50_2.AutoSize = true;
 
-                Label label_bnd_max_ec50_2 = new Label();
-                label_bnd_max_ec50_2.Location = new Point(625, 50);
-                label_bnd_max_ec50_2.Text = "Upper EC50_2";
-                label_bnd_max_ec50_2.Name = "lbl_bnd_max_ec50_2";
-                label_bnd_max_ec50_2.AutoSize = true;
+                //Label label_bnd_max_ec50_2 = new Label();
+                //label_bnd_max_ec50_2.Location = new Point(625, 50);
+                //label_bnd_max_ec50_2.Text = "Upper EC50_2";
+                //label_bnd_max_ec50_2.Name = "lbl_bnd_max_ec50_2";
+                //label_bnd_max_ec50_2.AutoSize = true;
 
                 Label label_bnd_min_slope1 = new Label();
                 label_bnd_min_slope1.Location = new Point(750, 20);
-                label_bnd_min_slope1.Text = "Lower Slope1";
+                label_bnd_min_slope1.Text = "Bounds Slope1";
                 label_bnd_min_slope1.Name = "lbl_bnd_min_slope1";
                 label_bnd_min_slope1.AutoSize = true;
 
-                Label label_bnd_max_slope1 = new Label();
-                label_bnd_max_slope1.Location = new Point(750, 50);
-                label_bnd_max_slope1.Text = "Upper Slope1";
-                label_bnd_max_slope1.Name = "lbl_bnd_max_slope1";
-                label_bnd_max_slope1.AutoSize = true;
+                //Label label_bnd_max_slope1 = new Label();
+                //label_bnd_max_slope1.Location = new Point(750, 50);
+                //label_bnd_max_slope1.Text = "Upper Slope1";
+                //label_bnd_max_slope1.Name = "lbl_bnd_max_slope1";
+                //label_bnd_max_slope1.AutoSize = true;
 
                 Label label_bnd_min_slope2 = new Label();
                 label_bnd_min_slope2.Location = new Point(875, 20);
-                label_bnd_min_slope2.Text = "Lower Slope2";
+                label_bnd_min_slope2.Text = "Bounds Slope2";
                 label_bnd_min_slope2.Name = "lbl_bnd_min_slope2";
                 label_bnd_min_slope2.AutoSize = true;
 
-                Label label_bnd_max_slope2 = new Label();
-                label_bnd_max_slope2.Location = new Point(875, 50);
-                label_bnd_max_slope2.Text = "Upper Slope2";
-                label_bnd_max_slope2.Name = "lbl_bnd_max_slope2";
-                label_bnd_max_slope2.AutoSize = true;
+                //Label label_bnd_max_slope2 = new Label();
+                //label_bnd_max_slope2.Location = new Point(875, 50);
+                //label_bnd_max_slope2.Text = "Upper Slope2";
+                //label_bnd_max_slope2.Name = "lbl_bnd_max_slope2";
+                //label_bnd_max_slope2.AutoSize = true;
 
                 //descriptors_general_options_form.Controls.Add(label_bnd_min_x);
                 //descriptors_general_options_form.Controls.Add(label_bnd_max_x);
@@ -4274,19 +4274,19 @@ namespace DRC
                 //descriptors_general_options_form.Controls.Add(label_bnd_max_y);
 
                 descriptors_general_options_form.panel1.Controls.Add(label_bnd_min_plateau1);
-                descriptors_general_options_form.panel1.Controls.Add(label_bnd_max_plateau1);
+                //descriptors_general_options_form.panel1.Controls.Add(label_bnd_max_plateau1);
                 descriptors_general_options_form.panel1.Controls.Add(label_bnd_min_plateau2);
-                descriptors_general_options_form.panel1.Controls.Add(label_bnd_max_plateau2);
+                //descriptors_general_options_form.panel1.Controls.Add(label_bnd_max_plateau2);
                 descriptors_general_options_form.panel1.Controls.Add(label_bnd_min_dip);
-                descriptors_general_options_form.panel1.Controls.Add(label_bnd_max_dip); 
+                //descriptors_general_options_form.panel1.Controls.Add(label_bnd_max_dip); 
                 descriptors_general_options_form.panel1.Controls.Add(label_bnd_min_ec50_1);
-                descriptors_general_options_form.panel1.Controls.Add(label_bnd_max_ec50_1); 
+                //descriptors_general_options_form.panel1.Controls.Add(label_bnd_max_ec50_1); 
                 descriptors_general_options_form.panel1.Controls.Add(label_bnd_min_ec50_2);
-                descriptors_general_options_form.panel1.Controls.Add(label_bnd_max_ec50_2); 
+                //descriptors_general_options_form.panel1.Controls.Add(label_bnd_max_ec50_2); 
                 descriptors_general_options_form.panel1.Controls.Add(label_bnd_min_slope1);
-                descriptors_general_options_form.panel1.Controls.Add(label_bnd_max_slope1); 
+                //descriptors_general_options_form.panel1.Controls.Add(label_bnd_max_slope1); 
                 descriptors_general_options_form.panel1.Controls.Add(label_bnd_min_slope2);
-                descriptors_general_options_form.panel1.Controls.Add(label_bnd_max_slope2); 
+                //descriptors_general_options_form.panel1.Controls.Add(label_bnd_max_slope2); 
 
                 int counter = 0;
 
@@ -4548,7 +4548,7 @@ namespace DRC
                     string descritpor_name = current_chart.get_Descriptor_Name();
 
                     Label new_label = new Label();
-                    new_label.Location = new Point(10, 20 + (counter + 1) * 25);
+                    new_label.Location = new Point(10, 20 + (counter + 1) * 50);
                     new_label.Text = descritpor_name;
                     new_label.Name = "lbl_descriptor_" + descritpor_name;
                     new_label.AutoSize = true;
@@ -4557,23 +4557,23 @@ namespace DRC
                     descriptors_general_options_form.panel1.Controls.Add(new_label);
 
                     TextBox text_box_bnd_min_plateau1 = new TextBox();
-                    text_box_bnd_min_plateau1.Location = new Point(125, 15 + (counter + 1) * 25);
+                    text_box_bnd_min_plateau1.Location = new Point(125, 0 + (counter + 1) * 50);
                     text_box_bnd_min_plateau1.Name = "txt_box_bnd_min_plateau1_descriptor_" + descritpor_name;
-                    text_box_bnd_min_plateau1.Text = Math.Pow(10, dict_descriptor_min_bnd_plateau1[descritpor_name].Min()).ToString();
+                    text_box_bnd_min_plateau1.Text = dict_descriptor_min_bnd_plateau1[descritpor_name].Min().ToString();
 
                     //descriptors_general_options_form.Controls.Add(text_box_bnd_min_x);
                     descriptors_general_options_form.panel1.Controls.Add(text_box_bnd_min_plateau1);
 
                     TextBox text_box_bnd_max_plateau1 = new TextBox();
-                    text_box_bnd_max_plateau1.Location = new Point(125, 15 + (counter + 1) * 50);
+                    text_box_bnd_max_plateau1.Location = new Point(125, 20 + (counter + 1) * 50);
                     text_box_bnd_max_plateau1.Name = "txt_box_bnd_max_plateau1_descriptor_" + descritpor_name;
-                    text_box_bnd_max_plateau1.Text = Math.Pow(10, dict_descriptor_max_bnd_plateau1[descritpor_name].Max()).ToString();
+                    text_box_bnd_max_plateau1.Text = dict_descriptor_max_bnd_plateau1[descritpor_name].Max().ToString();
 
                     //descriptors_general_options_form.Controls.Add(text_box_bnd_max_x);
                     descriptors_general_options_form.panel1.Controls.Add(text_box_bnd_max_plateau1);
 
                     TextBox text_box_bnd_min_plateau2 = new TextBox();
-                    text_box_bnd_min_plateau2.Location = new Point(250, 15 + (counter + 1) * 25);
+                    text_box_bnd_min_plateau2.Location = new Point(250, 0 + (counter + 1) * 50);
                     text_box_bnd_min_plateau2.Name = "txt_box_bnd_min_plateau2_descriptor_" + descritpor_name;
                     text_box_bnd_min_plateau2.Text = dict_descriptor_min_bnd_plateau2[descritpor_name].Min().ToString();
 
@@ -4581,7 +4581,7 @@ namespace DRC
                     descriptors_general_options_form.panel1.Controls.Add(text_box_bnd_min_plateau2);
 
                     TextBox text_box_bnd_max_plateau2 = new TextBox();
-                    text_box_bnd_max_plateau2.Location = new Point(250, 15 + (counter + 1) * 50);
+                    text_box_bnd_max_plateau2.Location = new Point(250, 20 + (counter + 1) * 50);
                     text_box_bnd_max_plateau2.Name = "txt_box_bnd_max_plateau2_descriptor_" + descritpor_name;
                     text_box_bnd_max_plateau2.Text = dict_descriptor_max_bnd_plateau2[descritpor_name].Max().ToString();
 
@@ -4589,7 +4589,7 @@ namespace DRC
                     descriptors_general_options_form.panel1.Controls.Add(text_box_bnd_max_plateau2);
 
                     TextBox text_box_bnd_min_dip = new TextBox();
-                    text_box_bnd_min_dip.Location = new Point(375, 15 + (counter + 1) * 25);
+                    text_box_bnd_min_dip.Location = new Point(375, 0 + (counter + 1) * 50);
                     text_box_bnd_min_dip.Name = "txt_box_bnd_min_dip_descriptor_" + descritpor_name;
                     text_box_bnd_min_dip.Text = dict_descriptor_min_bnd_dip[descritpor_name].Min().ToString();
 
@@ -4597,7 +4597,7 @@ namespace DRC
                     descriptors_general_options_form.panel1.Controls.Add(text_box_bnd_min_dip);
 
                     TextBox text_box_bnd_max_dip = new TextBox();
-                    text_box_bnd_max_dip.Location = new Point(375, 15 + (counter + 1) * 50);
+                    text_box_bnd_max_dip.Location = new Point(375, 20 + (counter + 1) * 50);
                     text_box_bnd_max_dip.Name = "txt_box_bnd_max_dip_descriptor_" + descritpor_name;
                     text_box_bnd_max_dip.Text = dict_descriptor_max_bnd_dip[descritpor_name].Max().ToString();
 
@@ -4605,40 +4605,40 @@ namespace DRC
                     descriptors_general_options_form.panel1.Controls.Add(text_box_bnd_max_dip);
 
                     TextBox text_box_bnd_min_ec50_1 = new TextBox();
-                    text_box_bnd_min_ec50_1.Location = new Point(500, 15 + (counter + 1) * 25);
+                    text_box_bnd_min_ec50_1.Location = new Point(500, 0 + (counter + 1) * 50);
                     text_box_bnd_min_ec50_1.Name = "txt_box_bnd_min_ec50_1_descriptor_" + descritpor_name;
-                    text_box_bnd_min_ec50_1.Text = dict_descriptor_min_bnd_ec50_1[descritpor_name].Min().ToString();
+                    text_box_bnd_min_ec50_1.Text = Math.Pow(10, dict_descriptor_min_bnd_ec50_1[descritpor_name].Min()).ToString();
 
                     //descriptors_general_options_form.Controls.Add(text_box_bnd_min_y);
                     descriptors_general_options_form.panel1.Controls.Add(text_box_bnd_min_ec50_1);
 
                     TextBox text_box_bnd_max_ec50_1 = new TextBox();
-                    text_box_bnd_max_ec50_1.Location = new Point(500, 15 + (counter + 1) * 50);
+                    text_box_bnd_max_ec50_1.Location = new Point(500, 20 + (counter + 1) * 50);
                     text_box_bnd_max_ec50_1.Name = "txt_box_bnd_max_ec50_1_descriptor_" + descritpor_name;
-                    text_box_bnd_max_ec50_1.Text = dict_descriptor_max_bnd_ec50_1[descritpor_name].Max().ToString();
+                    text_box_bnd_max_ec50_1.Text = Math.Pow(10, dict_descriptor_max_bnd_ec50_1[descritpor_name].Max()).ToString();
 
                     //descriptors_general_options_form.Controls.Add(text_box_bnd_max_y);
                     descriptors_general_options_form.panel1.Controls.Add(text_box_bnd_max_ec50_1);
 
 
                     TextBox text_box_bnd_min_ec50_2 = new TextBox();
-                    text_box_bnd_min_ec50_2.Location = new Point(625, 15 + (counter + 1) * 25);
+                    text_box_bnd_min_ec50_2.Location = new Point(625, 0 + (counter + 1) * 50);
                     text_box_bnd_min_ec50_2.Name = "txt_box_bnd_min_ec50_2_descriptor_" + descritpor_name;
-                    text_box_bnd_min_ec50_2.Text = dict_descriptor_min_bnd_ec50_2[descritpor_name].Min().ToString();
+                    text_box_bnd_min_ec50_2.Text = Math.Pow(10, dict_descriptor_min_bnd_ec50_2[descritpor_name].Min()).ToString();
 
                     //descriptors_general_options_form.Controls.Add(text_box_bnd_min_y);
                     descriptors_general_options_form.panel1.Controls.Add(text_box_bnd_min_ec50_2);
 
                     TextBox text_box_bnd_max_ec50_2 = new TextBox();
-                    text_box_bnd_max_ec50_2.Location = new Point(625, 15 + (counter + 1) * 50);
+                    text_box_bnd_max_ec50_2.Location = new Point(625, 20 + (counter + 1) * 50);
                     text_box_bnd_max_ec50_2.Name = "txt_box_bnd_max_ec50_2_descriptor_" + descritpor_name;
-                    text_box_bnd_max_ec50_2.Text = dict_descriptor_max_bnd_ec50_2[descritpor_name].Max().ToString();
+                    text_box_bnd_max_ec50_2.Text = Math.Pow(10, dict_descriptor_max_bnd_ec50_2[descritpor_name].Max()).ToString();
 
                     //descriptors_general_options_form.Controls.Add(text_box_bnd_max_y);
                     descriptors_general_options_form.panel1.Controls.Add(text_box_bnd_max_ec50_2);
 
                     TextBox text_box_bnd_min_slope1 = new TextBox();
-                    text_box_bnd_min_slope1.Location = new Point(750, 15 + (counter + 1) * 25);
+                    text_box_bnd_min_slope1.Location = new Point(750, 0 + (counter + 1) * 50);
                     text_box_bnd_min_slope1.Name = "txt_box_bnd_min_slope1_descriptor_" + descritpor_name;
                     text_box_bnd_min_slope1.Text = dict_descriptor_min_bnd_slope1[descritpor_name].Min().ToString();
 
@@ -4646,7 +4646,7 @@ namespace DRC
                     descriptors_general_options_form.panel1.Controls.Add(text_box_bnd_min_slope1);
 
                     TextBox text_box_bnd_max_slope1 = new TextBox();
-                    text_box_bnd_max_slope1.Location = new Point(750, 15 + (counter + 1) * 50);
+                    text_box_bnd_max_slope1.Location = new Point(750, 20 + (counter + 1) * 50);
                     text_box_bnd_max_slope1.Name = "txt_box_bnd_max_slope1_descriptor_" + descritpor_name;
                     text_box_bnd_max_slope1.Text = dict_descriptor_max_bnd_slope1[descritpor_name].Max().ToString();
 
@@ -4654,7 +4654,7 @@ namespace DRC
                     descriptors_general_options_form.panel1.Controls.Add(text_box_bnd_max_slope1);
 
                     TextBox text_box_bnd_min_slope2 = new TextBox();
-                    text_box_bnd_min_slope2.Location = new Point(875, 15 + (counter + 1) * 25);
+                    text_box_bnd_min_slope2.Location = new Point(875, 0 + (counter + 1) * 50);
                     text_box_bnd_min_slope2.Name = "txt_box_bnd_min_slope2_descriptor_" + descritpor_name;
                     text_box_bnd_min_slope2.Text = dict_descriptor_min_bnd_slope2[descritpor_name].Min().ToString();
 
@@ -4662,7 +4662,7 @@ namespace DRC
                     descriptors_general_options_form.panel1.Controls.Add(text_box_bnd_min_slope2);
 
                     TextBox text_box_bnd_max_slope2 = new TextBox();
-                    text_box_bnd_max_slope2.Location = new Point(875, 15 + (counter + 1) * 50);
+                    text_box_bnd_max_slope2.Location = new Point(875, 20 + (counter + 1) * 50);
                     text_box_bnd_max_slope2.Name = "txt_box_bnd_max_slope2_descriptor_" + descritpor_name;
                     text_box_bnd_max_slope2.Text = dict_descriptor_max_bnd_slope2[descritpor_name].Max().ToString();
 
@@ -4833,10 +4833,10 @@ namespace DRC
                         if (if_bounds_max[1]) current_chart.set_max_bound_plateau2(bounds_max[1]);
                         if (if_bounds_min[2]) current_chart.set_min_bound_dip(bounds_min[2]);
                         if (if_bounds_max[2]) current_chart.set_max_bound_dip(bounds_max[2]);
-                        if (if_bounds_min[3]) current_chart.set_min_bound_ec50_1(Math.Log10(bounds_min[3]));
-                        if (if_bounds_max[3]) current_chart.set_max_bound_ec50_1(Math.Log10(bounds_max[3]));
-                        if (if_bounds_min[4]) current_chart.set_min_bound_ec50_2(Math.Log10(bounds_min[4]));
-                        if (if_bounds_max[4]) current_chart.set_max_bound_ec50_2(Math.Log10(bounds_max[4]));
+                        if (if_bounds_min[3]) current_chart.set_min_bound_ec50_1(bounds_min[3]);
+                        if (if_bounds_max[3]) current_chart.set_max_bound_ec50_1(bounds_max[3]);
+                        if (if_bounds_min[4]) current_chart.set_min_bound_ec50_2(bounds_min[4]);
+                        if (if_bounds_max[4]) current_chart.set_max_bound_ec50_2(bounds_max[4]);
                         if (if_bounds_min[5]) current_chart.set_min_bound_slope1(bounds_min[5]);
                         if (if_bounds_max[5]) current_chart.set_max_bound_slope1(bounds_max[5]);
                         if (if_bounds_min[6]) current_chart.set_min_bound_slope2(bounds_min[6]);
