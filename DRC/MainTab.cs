@@ -10488,10 +10488,10 @@ namespace DRC
                 PointF point1 = PointF.Empty;
                 PointF point2 = PointF.Empty;
 
-                point1.X = (float)ax.ValueToPixelPosition(Math.Pow(10, fit_parameters[2]));
+                point1.X = (float)ax.ValueToPixelPosition(Math.Pow(10, fit_parameters[3]));
                 point1.Y = (float)ay.ValueToPixelPosition(chart.ChartAreas[0].AxisY.Minimum);
-                point2.X = (float)ax.ValueToPixelPosition(Math.Pow(10, fit_parameters[2]));
-                point2.Y = (float)ay.ValueToPixelPosition(Sigmoid(fit_parameters, fit_parameters[2]));
+                point2.X = (float)ax.ValueToPixelPosition(Math.Pow(10, fit_parameters[3]));
+                point2.Y = (float)ay.ValueToPixelPosition(BellShaped(fit_parameters, fit_parameters[3]));
 
                 float[] dashValues = { 2, 2, 2, 2 };
                 Pen blackPen = new Pen(Color.DimGray, 0.25f);
@@ -10517,11 +10517,31 @@ namespace DRC
                 PointF point4 = PointF.Empty;
 
                 point3.X = (float)ax.ValueToPixelPosition(chart.ChartAreas[0].AxisX.Minimum);
-                point3.Y = (float)ay.ValueToPixelPosition(Sigmoid(fit_parameters, fit_parameters[2]));
-                point4.X = (float)ax.ValueToPixelPosition(Math.Pow(10, fit_parameters[2]));
-                point4.Y = (float)ay.ValueToPixelPosition(Sigmoid(fit_parameters, fit_parameters[2]));
+                point3.Y = (float)ay.ValueToPixelPosition(BellShaped(fit_parameters, fit_parameters[3]));
+                point4.X = (float)ax.ValueToPixelPosition(Math.Pow(10, fit_parameters[3]));
+                point4.Y = (float)ay.ValueToPixelPosition(BellShaped(fit_parameters, fit_parameters[3]));
 
                 graph.DrawLine(blackPen, point3, point4);
+
+                PointF point5 = PointF.Empty;
+                PointF point6 = PointF.Empty;
+
+                point5.X = (float)ax.ValueToPixelPosition(chart.ChartAreas[0].AxisX.Minimum);
+                point5.Y = (float)ay.ValueToPixelPosition(BellShaped(fit_parameters, fit_parameters[4]));
+                point6.X = (float)ax.ValueToPixelPosition(Math.Pow(10, fit_parameters[4]));
+                point6.Y = (float)ay.ValueToPixelPosition(BellShaped(fit_parameters, fit_parameters[4]));
+
+                graph.DrawLine(blackPen, point5, point6);
+
+                PointF point7 = PointF.Empty;
+                PointF point8 = PointF.Empty;
+
+                point7.X = (float)ax.ValueToPixelPosition(Math.Pow(10, fit_parameters[4]));
+                point7.Y = (float)ay.ValueToPixelPosition(chart.ChartAreas[0].AxisY.Minimum);
+                point8.X = (float)ax.ValueToPixelPosition(Math.Pow(10, fit_parameters[4]));
+                point8.Y = (float)ay.ValueToPixelPosition(BellShaped(fit_parameters, fit_parameters[4]));
+
+                graph.DrawLine(blackPen, point7, point8);
 
                 //chart.ChartAreas[0].AxisX.Minimum = minimum_x;
                 //chart.ChartAreas[0].AxisY.Minimum = minimum_y;
