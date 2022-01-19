@@ -693,8 +693,8 @@ namespace DRC
                     f5.dataGridViewExport.Columns[column_number * i + 2].Name = elem;
                     f5.dataGridViewExport.Columns[column_number * i + 3].Name = "EC_50_1 " + elem;
                     f5.dataGridViewExport.Columns[column_number * i + 4].Name = "EC_50_2 " + elem;
-                    f5.dataGridViewExport.Columns[column_number * i + 5].Name = "Bottom " + elem;
-                    f5.dataGridViewExport.Columns[column_number * i + 6].Name = "Top " + elem;
+                    f5.dataGridViewExport.Columns[column_number * i + 5].Name = "Plateau1 " + elem;
+                    f5.dataGridViewExport.Columns[column_number * i + 6].Name = "Plateau2 " + elem;
                     f5.dataGridViewExport.Columns[column_number * i + 7].Name = "Dip " + elem;
                     f5.dataGridViewExport.Columns[column_number * i + 8].Name = "Slope1 " + elem;
                     f5.dataGridViewExport.Columns[column_number * i + 9].Name = "Slope2 " + elem;
