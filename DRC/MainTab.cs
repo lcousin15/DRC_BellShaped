@@ -1422,7 +1422,7 @@ namespace DRC
                 List<string> bnds_type = new List<string>();
                 bnds_type.Add("min_x");
                 bnds_type.Add("max_x");
-                bnds_type.Add("min_y");
+                bnds_type.Add("min_y"); kuguugo
                 bnds_type.Add("max_y");
 
                 for (int descriptor_index = 0; descriptor_index < descritpor_number; descriptor_index++)
@@ -1581,11 +1581,21 @@ namespace DRC
 
                         removed_raw_data_cpd = current_chart.get_Removed_Raw_Data().ToList();
 
-                        double bound_x_min = current_chart.get_min_bound_x();
-                        double bound_y_min = current_chart.get_min_bound_y();
+                        double bound_plateau1_min = current_chart.get_min_bound_plateau1();
+                        double bound_plateau2_min = current_chart.get_min_bound_plateau2();
+                        double bound_dip_min = current_chart.get_min_bound_dip();
+                        double bound_ec50_1_min = current_chart.get_min_bound_ec50_1();
+                        double bound_ec50_2_min = current_chart.get_min_bound_ec50_2();
+                        double bound_slope1_min = current_chart.get_min_bound_slope1();
+                        double bound_slope2_min = current_chart.get_min_bound_slope2();
 
-                        double bound_x_max = current_chart.get_max_bound_x();
-                        double bound_y_max = current_chart.get_max_bound_y();
+                        double bound_plateau1_max = current_chart.get_max_bound_plateau1();
+                        double bound_plateau2_max = current_chart.get_max_bound_plateau2();
+                        double bound_dip_max = current_chart.get_max_bound_dip();
+                        double bound_ec50_1_max = current_chart.get_max_bound_ec50_1();
+                        double bound_ec50_2_max = current_chart.get_max_bound_ec50_2();
+                        double bound_slope1_max = current_chart.get_max_bound_slope1();
+                        double bound_slope2_max = current_chart.get_max_bound_slope2();
 
                         int k = 0;
                         foreach (bool elem in removed_raw_data_cpd)
@@ -4389,7 +4399,6 @@ namespace DRC
                 }
             }
         }
-
         public void apply_descritpor_general_bounds(string descriptor_name, double bnd_min_x, double bnd_max_x, double bnd_min_y, double bnd_max_y)
         {
             foreach (KeyValuePair<string, List<Chart_DRC>> elem in descriptors_chart)
@@ -6879,14 +6888,37 @@ namespace DRC
 
         private double minX = -1;
         private double maxX = -1;
-        private double minY = -1e10;
-        private double maxY = -1e10;
+        private double minY = -1e12;
+        private double maxY = -1e12;
 
-        private double min_bound_x = 0.0;
-        private double max_bound_x = 0.0;
-        private double min_bound_y = 0.0;
-        private double max_bound_y = 0.0;
+        // Boundaries :
+        //private double min_bound_x = 0.0;
+        //private double max_bound_x = 0.0;
+        //private double min_bound_y = 0.0;
+        //private double max_bound_y = 0.0;
 
+        private double min_bound_plateau1 = 0.0;
+        private double max_bound_plateau1 = 0.0;
+
+        private double min_bound_plateau2 = 0.0;
+        private double max_bound_plateau2 = 0.0;
+
+        private double min_bound_dip = 0.0;
+        private double max_bound_dip = 0.0;
+
+        private double min_bound_ec50_1 = 0.0;
+        private double max_bound_ec50_1 = 0.0;
+
+        private double min_bound_ec50_2 = 0.0;
+        private double max_bound_ec50_2 = 0.0;
+
+        private double min_bound_slope1 = 0.0;
+        private double max_bound_slope1 = 0.0;
+
+        private double min_bound_slope2 = 0.0;
+        private double max_bound_slope2 = 0.0;
+
+        // Fixed parameters :
         private double fixed_plateau1 = 0.0;
         private double fixed_plateau2 = 0.0;
         private double fixed_dip = 0.0;
@@ -7086,54 +7118,230 @@ namespace DRC
             manual_bounds = status;
         }
 
-        public double get_min_bound_x()
+        //public double get_min_bound_x()
+        //{
+        //    return min_bound_x;
+        //}
+
+        //public double get_max_bound_x()
+        //{
+        //    return max_bound_x;
+        //}
+
+        //public double get_min_bound_y()
+        //{
+        //    return min_bound_y;
+        //}
+
+        //public double get_max_bound_y()
+        //{
+        //    return max_bound_y;
+        //}
+
+        public double get_min_bound_plateau1()
         {
-            return min_bound_x;
+            return min_bound_plateau1;
         }
 
-        public double get_max_bound_x()
+        public double get_max_bound_plateau1()
         {
-            return max_bound_x;
+            return max_bound_plateau1;
         }
 
-        public double get_min_bound_y()
+        public double get_min_bound_plateau2()
         {
-            return min_bound_y;
+            return min_bound_plateau2;
         }
 
-        public double get_max_bound_y()
+        public double get_max_bound_plateau2()
         {
-            return max_bound_y;
+            return max_bound_plateau2;
         }
 
-        public void set_min_bound_x(double x_min)
+        public double get_min_bound_dip()
         {
-            min_bound_x = x_min;
-            fit_bounds["min_x"] = x_min;
+            return min_bound_dip;
+        }
+
+        public double get_max_bound_dip()
+        {
+            return max_bound_dip;
+        }
+
+        public double get_min_bound_ec50_1()
+        {
+            return min_bound_ec50_1;
+        }
+
+        public double get_max_bound_ec50_1()
+        {
+            return max_bound_ec50_1;
+        }
+
+        public double get_min_bound_ec50_2()
+        {
+            return min_bound_ec50_2;
+        }
+
+        public double get_max_bound_ec50_2()
+        {
+            return max_bound_ec50_2;
+        }
+
+        public double get_min_bound_slope1()
+        {
+            return min_bound_slope1;
+        }
+
+        public double get_max_bound_slope1()
+        {
+            return max_bound_slope1;
+        }
+
+        public double get_min_bound_slope2()
+        {
+            return min_bound_slope2;
+        }
+
+        public double get_max_bound_slope2()
+        {
+            return max_bound_slope2;
+        }
+
+        //public void set_min_bound_x(double x_min)
+        //{
+        //    min_bound_x = x_min;
+        //    fit_bounds["min_x"] = x_min;
+
+        //    if (general_params == false) manual_bounds = true;
+        //}
+
+        //public void set_max_bound_x(double x_max)
+        //{
+        //    max_bound_x = x_max;
+        //    fit_bounds["max_x"] = x_max;
+
+        //    if (general_params == false) manual_bounds = true;
+        //}
+
+        //public void set_min_bound_y(double y_min)
+        //{
+        //    min_bound_y = y_min;
+        //    fit_bounds["min_y"] = y_min;
+
+        //    if (general_params == false) manual_bounds = true;
+        //}
+
+        //public void set_max_bound_y(double y_max)
+        //{
+        //    max_bound_y = y_max;
+        //    fit_bounds["max_y"] = y_max;
+
+        //    if (general_params == false) manual_bounds = true;
+        //}
+
+        public void set_min_bound_plateau1(double min)
+        {
+            min_bound_plateau1 = min;
+            fit_bounds["min_plateau1"] = min;
+
+            if (general_params == false) manual_bounds = true;
+        }
+        public void set_max_bound_plateau1(double max)
+        {
+            max_bound_plateau1 = max;
+            fit_bounds["max_plateau1"] = max;
 
             if (general_params == false) manual_bounds = true;
         }
 
-        public void set_max_bound_x(double x_max)
+        public void set_min_bound_plateau2(double min)
         {
-            max_bound_x = x_max;
-            fit_bounds["max_x"] = x_max;
+            min_bound_plateau2 = min;
+            fit_bounds["min_plateau2"] = min;
+
+            if (general_params == false) manual_bounds = true;
+        }
+        public void set_max_bound_plateau2(double max)
+        {
+            max_bound_plateau2 = max;
+            fit_bounds["max_plateau2"] = max;
 
             if (general_params == false) manual_bounds = true;
         }
 
-        public void set_min_bound_y(double y_min)
+        public void set_min_bound_dip(double min)
         {
-            min_bound_y = y_min;
-            fit_bounds["min_y"] = y_min;
+            min_bound_dip = min;
+            fit_bounds["min_dip"] = min;
+
+            if (general_params == false) manual_bounds = true;
+        }
+        public void set_max_bound_dip(double max)
+        {
+            max_bound_dip = max;
+            fit_bounds["max_dip"] = max;
 
             if (general_params == false) manual_bounds = true;
         }
 
-        public void set_max_bound_y(double y_max)
+        public void set_min_bound_ec50_1(double min)
         {
-            max_bound_y = y_max;
-            fit_bounds["max_y"] = y_max;
+            min_bound_ec50_1 = min;
+            fit_bounds["min_ec50_1"] = min;
+
+            if (general_params == false) manual_bounds = true;
+        }
+        public void set_max_bound_ec50_1(double max)
+        {
+            max_bound_ec50_1 = max;
+            fit_bounds["max_ec50_1"] = max;
+
+            if (general_params == false) manual_bounds = true;
+        }
+
+        public void set_min_bound_ec50_2(double min)
+        {
+            min_bound_ec50_2 = min;
+            fit_bounds["min_ec50_2"] = min;
+
+            if (general_params == false) manual_bounds = true;
+        }
+        public void set_max_bound_ec50_2(double max)
+        {
+            max_bound_ec50_2 = max;
+            fit_bounds["max_ec50_2"] = max;
+
+            if (general_params == false) manual_bounds = true;
+        }
+
+        public void set_min_bound_slope1(double min)
+        {
+            min_bound_slope1 = min;
+            fit_bounds["min_slope1"] = min;
+
+            if (general_params == false) manual_bounds = true;
+        }
+        public void set_max_bound_slope1(double max)
+        {
+            max_bound_slope1 = max;
+            fit_bounds["max_slope1"] = max;
+
+            if (general_params == false) manual_bounds = true;
+        }
+
+        public void set_min_bound_slope2(double min)
+        {
+            min_bound_slope2 = min;
+            fit_bounds["min_slope2"] = min;
+
+            if (general_params == false) manual_bounds = true;
+        }
+
+        public void set_max_bound_slope2(double max)
+        {
+            max_bound_slope2 = max;
+            fit_bounds["max_slope2"] = max;
 
             if (general_params == false) manual_bounds = true;
         }
@@ -8235,393 +8443,393 @@ namespace DRC
             return sum_square_residuals;
         }
 
-        public void fit_DRC_Sigmoid() // Old version
-        {
-            double GlobalMax = double.MinValue;
-            double MaxValues = MaxA(drc_points_y_enable.ToArray());
+        //public void fit_DRC_Sigmoid() // Old version
+        //{
+        //    double GlobalMax = double.MinValue;
+        //    double MaxValues = MaxA(drc_points_y_enable.ToArray());
 
-            GlobalMax = MaxValues + 0.05 * Math.Abs(MaxValues);
+        //    GlobalMax = MaxValues + 0.05 * Math.Abs(MaxValues);
 
-            double GlobalMin = double.MaxValue;
-            double MinValues = MinA(drc_points_y_enable.ToArray());
+        //    double GlobalMin = double.MaxValue;
+        //    double MinValues = MinA(drc_points_y_enable.ToArray());
 
-            GlobalMin = MinValues - 0.05 * Math.Abs(MinValues);
+        //    GlobalMin = MinValues - 0.05 * Math.Abs(MinValues);
 
-            double epsf = 0;
-            double epsx = 1e-6; // 0.000000001;
-            double diffstep = 1e-8;
+        //    double epsf = 0;
+        //    double epsx = 1e-6; // 0.000000001;
+        //    double diffstep = 1e-8;
 
-            //double epsx = 1e-6;
-            int maxits = 0;
-            int info;
+        //    //double epsx = 1e-6;
+        //    int maxits = 0;
+        //    int info;
 
-            if (bound_auto)
-            {
-                min_bound_y = GlobalMin;
-                max_bound_y = GlobalMax;
+        //    if (bound_auto)
+        //    {
+        //        min_bound_y = GlobalMin;
+        //        max_bound_y = GlobalMax;
 
-                min_bound_x = Math.Log10(MaxConcentrationLin) + 1.0;
-                max_bound_x = Math.Log10(MinConcentrationLin) - 1.0;
-            }
+        //        min_bound_x = Math.Log10(MaxConcentrationLin) + 1.0;
+        //        max_bound_x = Math.Log10(MinConcentrationLin) - 1.0;
+        //    }
 
-            if (fit_bounds.Count() > 0 && manual_bounds && !bound_auto)
-            {
-                min_bound_y = fit_bounds["min_y"];
-                max_bound_y = fit_bounds["max_y"];
+        //    if (fit_bounds.Count() > 0 && manual_bounds && !bound_auto)
+        //    {
+        //        min_bound_y = fit_bounds["min_y"];
+        //        max_bound_y = fit_bounds["max_y"];
 
-                min_bound_x = fit_bounds["min_x"];
-                max_bound_x = fit_bounds["max_x"];
-            }
+        //        min_bound_x = fit_bounds["min_x"];
+        //        max_bound_x = fit_bounds["max_x"];
+        //    }
 
-            // Top Fixed = fit with 3 params
-            if (is_plateau1_fixed)
-            {
-                double BaseEC50 = Math.Log10(MaxConcentrationLin) - Math.Abs(Math.Log10(MaxConcentrationLin) - Math.Log10(MinConcentrationLin)) / 2.0;
+        //    // Top Fixed = fit with 3 params
+        //    if (is_plateau1_fixed)
+        //    {
+        //        double BaseEC50 = Math.Log10(MaxConcentrationLin) - Math.Abs(Math.Log10(MaxConcentrationLin) - Math.Log10(MinConcentrationLin)) / 2.0;
 
-                double first_slope = (GlobalMax - GlobalMin) / (Math.Log10(MaxConcentrationLin) - Math.Log10(MinConcentrationLin));
-                if ((GlobalMax - GlobalMin) > 0)
-                {
-                    first_slope = -Math.Abs(first_slope);
-                }
-                else
-                {
-                    first_slope = +Math.Abs(first_slope);
-                }
-
-                double[] c = new double[] { min_bound_y, BaseEC50, 0.0 };
-
-                double[] bndl = null;
-                double[] bndu = null;
-
-                // boundaries
-                bndu = new double[] { max_bound_y, min_bound_x, +10.0 * Math.Abs(first_slope) };
-                bndl = new double[] { min_bound_y, max_bound_x, -10.0 * Math.Abs(first_slope) };
-
-                alglib.lsfitstate state;
-                alglib.lsfitreport rep;
+        //        double first_slope = (GlobalMax - GlobalMin) / (Math.Log10(MaxConcentrationLin) - Math.Log10(MinConcentrationLin));
+        //        if ((GlobalMax - GlobalMin) > 0)
+        //        {
+        //            first_slope = -Math.Abs(first_slope);
+        //        }
+        //        else
+        //        {
+        //            first_slope = +Math.Abs(first_slope);
+        //        }
+
+        //        double[] c = new double[] { min_bound_y, BaseEC50, 0.0 };
+
+        //        double[] bndl = null;
+        //        double[] bndu = null;
+
+        //        // boundaries
+        //        bndu = new double[] { max_bound_y, min_bound_x, +10.0 * Math.Abs(first_slope) };
+        //        bndl = new double[] { min_bound_y, max_bound_x, -10.0 * Math.Abs(first_slope) };
+
+        //        alglib.lsfitstate state;
+        //        alglib.lsfitreport rep;
 
-                // Fitting without weights
-                //alglib.lsfitcreatefg(Concentrations, Values.ToArray(), c, false, out state);
-
-                double[,] Concentration = new double[drc_points_x_enable.Count(), 1];
-                for (var i = 0; i < drc_points_x_enable.Count(); ++i)
-                {
-                    Concentration[i, 0] = drc_points_x_enable[i];
-                }
-
-                alglib.lsfitcreatef(Concentration, drc_points_y_enable.ToArray(), c, diffstep, out state);
-                alglib.lsfitsetcond(state, epsf, epsx, maxits);
-                alglib.lsfitsetbc(state, bndl, bndu);
-                // alglib.lsfitsetscale(state, s);
-
-                alglib.lsfitfit(state, function_SigmoidInhibition_3_params, null, fixed_plateau2);
-                alglib.lsfitresults(state, out info, out c, out rep);
-
-                Console.WriteLine(info);
-
-                fit_parameters[0] = c[0];
-                fit_parameters[1] = fixed_plateau2;
-                fit_parameters[2] = c[1];
-                fit_parameters[3] = c[2];
-
-                RelativeError = rep.avgrelerror;
-                r2 = rep.r2;
-                double mse = sum_sqaure_residuals_3_params(drc_points_x_enable, drc_points_y_enable, c, fixed_plateau2);
-
-                if (r2 >= 0.85 && patient == false) confidence_interval = true;
-                else confidence_interval = false;
-
-                err_bottom = rep.errpar[0];
-                err_ec_50 = rep.errpar[1];
-                err_slope = rep.errpar[2];
-
-                if (confidence_interval && display_confidence_interval)
-                {
-                    double[,] covariance_matrix = rep.covpar;
-
-                    int dof = drc_points_y_enable.Count - 3;
-
-                    double t_test_val = chart.DataManipulator.Statistics.InverseTDistribution(.05, dof);
-
-                    //double sum_square_residuals = sum_sqaure_residuals(drc_points_x_enable, drc_points_y_enable, c);
-
-                    y_conf_int_born_sup.Clear();
-                    y_conf_int_born_inf.Clear();
-                    x_log_unique.Clear();
-
-                    double amplitude = Math.Abs(Sigmoid_3_params(c, x_fit_log[0], fixed_plateau2) - Sigmoid_3_params(c, x_fit_log[x_fit_log.Count - 1], fixed_plateau2));
-
-                    double min_curve = Math.Min(Sigmoid_3_params(c, x_fit_log[0], fixed_plateau2), Sigmoid_3_params(c, x_fit_log[x_fit_log.Count - 1], fixed_plateau2));
-                    double max_curve = Math.Max(Sigmoid_3_params(c, x_fit_log[0], fixed_plateau2), Sigmoid_3_params(c, x_fit_log[x_fit_log.Count - 1], fixed_plateau2));
-
-                    SortedDictionary<double, double> born_sup = new SortedDictionary<double, double>();
-                    SortedDictionary<double, double> born_inf = new SortedDictionary<double, double>();
-
-                    for (int i = 0; i < x_fit_log.Count; ++i)
-                    {
-                        double a = compute_least_square_error_3_params(covariance_matrix, c[0], fixed_plateau2, c[1], c[2], x_fit_log[i]);
-                        double sigma_confidence_interval = t_test_val * /*Math.Sqrt(mse/dof) */ Math.Sqrt(a); // * Math.Sqrt(sum_square_residuals / (double)dof);
-
-                        double CI_max = Sigmoid_3_params(c, x_fit_log[i], fixed_plateau2) + sigma_confidence_interval;
-                        double CI_min = Sigmoid_3_params(c, x_fit_log[i], fixed_plateau2) - sigma_confidence_interval;
-
-                        if (CI_max > max_curve + 0.4 * amplitude) //|| sigma_confidence_interval > amplitude)
-                        {
-                            born_sup[x_fit_log[i]] = max_curve + 0.4 * amplitude;
-                        }
-                        else
-                        {
-                            born_sup[x_fit_log[i]] = CI_max;
-                        }
-
-                        if (CI_min < min_curve - 0.4 * amplitude) //|| sigma_confidence_interval > amplitude)
-                        {
-                            born_inf[x_fit_log[i]] = min_curve - 0.4 * amplitude;
-                        }
-                        else
-                        {
-                            born_inf[x_fit_log[i]] = CI_min;
-                        }
-                    }
-
-                    foreach (KeyValuePair<double, double> elem in born_sup)
-                    {
-                        y_conf_int_born_sup.Add(elem.Value);
-                    }
-
-                    foreach (KeyValuePair<double, double> elem in born_inf)
-                    {
-                        y_conf_int_born_inf.Add(elem.Value);
-                        x_log_unique.Add(Math.Pow(10, elem.Key));
-                    }
-
-                }
-
-                y_fit_log.Clear();
-
-                for (int IdxConc = 0; IdxConc < x_fit.Count; IdxConc++)
-                {
-                    y_fit_log.Add(Sigmoid_3_params(c, x_fit_log[IdxConc], fixed_plateau2));
-                }
-
-            }
-            else // top not fixed, fit with 4 params.
-            {
-                double BaseEC50 = Math.Log10(MaxConcentrationLin) - Math.Abs(Math.Log10(MaxConcentrationLin) - Math.Log10(MinConcentrationLin)) / 2.0;
-
-                double first_slope = (GlobalMax - GlobalMin) / (Math.Log10(MaxConcentrationLin) - Math.Log10(MinConcentrationLin));
-                if ((GlobalMax - GlobalMin) > 0)
-                {
-                    first_slope = -Math.Abs(first_slope);
-                }
-                else
-                {
-                    first_slope = +Math.Abs(first_slope);
-                }
-
-                double[] c = new double[] { min_bound_y, max_bound_y, BaseEC50, 0 };
-                double[] c2 = new double[] { min_bound_y, max_bound_y, BaseEC50, 0 };
-                double[] c3 = new double[] { min_bound_y, max_bound_y, BaseEC50, 0 };
-
-                double[] bndl = null;
-                double[] bndu = null;
-
-
-                // boundaries
-                bndu = new double[] { max_bound_y, max_bound_y, min_bound_x, +10 * Math.Abs(first_slope) };
-                bndl = new double[] { min_bound_y, min_bound_y, max_bound_x, -10 * Math.Abs(first_slope) };
-
-                alglib.lsfitstate state;
-                alglib.lsfitreport rep;
-
-                // Fitting without weights
-                //alglib.lsfitcreatefg(Concentrations, Values.ToArray(), c, false, out state);
-
-                double[,] Concentration = new double[drc_points_x_enable.Count(), 1];
-                double[] conc_0 = new double[drc_points_x_enable.Count()];
-
-                for (var i = 0; i < drc_points_x_enable.Count(); ++i)
-                {
-                    Concentration[i, 0] = drc_points_x_enable[i];
-                    conc_0[i] = drc_points_x_enable[i];
-                }
-
-                alglib.lsfitcreatef(Concentration, drc_points_y_enable.ToArray(), c, diffstep, out state);
-                alglib.lsfitsetcond(state, epsf, epsx, maxits);
-                alglib.lsfitsetbc(state, bndl, bndu);
-                // alglib.lsfitsetscale(state, s);
+        //        // Fitting without weights
+        //        //alglib.lsfitcreatefg(Concentrations, Values.ToArray(), c, false, out state);
+
+        //        double[,] Concentration = new double[drc_points_x_enable.Count(), 1];
+        //        for (var i = 0; i < drc_points_x_enable.Count(); ++i)
+        //        {
+        //            Concentration[i, 0] = drc_points_x_enable[i];
+        //        }
+
+        //        alglib.lsfitcreatef(Concentration, drc_points_y_enable.ToArray(), c, diffstep, out state);
+        //        alglib.lsfitsetcond(state, epsf, epsx, maxits);
+        //        alglib.lsfitsetbc(state, bndl, bndu);
+        //        // alglib.lsfitsetscale(state, s);
+
+        //        alglib.lsfitfit(state, function_SigmoidInhibition_3_params, null, fixed_plateau2);
+        //        alglib.lsfitresults(state, out info, out c, out rep);
+
+        //        Console.WriteLine(info);
+
+        //        fit_parameters[0] = c[0];
+        //        fit_parameters[1] = fixed_plateau2;
+        //        fit_parameters[2] = c[1];
+        //        fit_parameters[3] = c[2];
+
+        //        RelativeError = rep.avgrelerror;
+        //        r2 = rep.r2;
+        //        double mse = sum_sqaure_residuals_3_params(drc_points_x_enable, drc_points_y_enable, c, fixed_plateau2);
+
+        //        if (r2 >= 0.85 && patient == false) confidence_interval = true;
+        //        else confidence_interval = false;
+
+        //        err_bottom = rep.errpar[0];
+        //        err_ec_50 = rep.errpar[1];
+        //        err_slope = rep.errpar[2];
+
+        //        if (confidence_interval && display_confidence_interval)
+        //        {
+        //            double[,] covariance_matrix = rep.covpar;
+
+        //            int dof = drc_points_y_enable.Count - 3;
+
+        //            double t_test_val = chart.DataManipulator.Statistics.InverseTDistribution(.05, dof);
+
+        //            //double sum_square_residuals = sum_sqaure_residuals(drc_points_x_enable, drc_points_y_enable, c);
+
+        //            y_conf_int_born_sup.Clear();
+        //            y_conf_int_born_inf.Clear();
+        //            x_log_unique.Clear();
+
+        //            double amplitude = Math.Abs(Sigmoid_3_params(c, x_fit_log[0], fixed_plateau2) - Sigmoid_3_params(c, x_fit_log[x_fit_log.Count - 1], fixed_plateau2));
+
+        //            double min_curve = Math.Min(Sigmoid_3_params(c, x_fit_log[0], fixed_plateau2), Sigmoid_3_params(c, x_fit_log[x_fit_log.Count - 1], fixed_plateau2));
+        //            double max_curve = Math.Max(Sigmoid_3_params(c, x_fit_log[0], fixed_plateau2), Sigmoid_3_params(c, x_fit_log[x_fit_log.Count - 1], fixed_plateau2));
+
+        //            SortedDictionary<double, double> born_sup = new SortedDictionary<double, double>();
+        //            SortedDictionary<double, double> born_inf = new SortedDictionary<double, double>();
+
+        //            for (int i = 0; i < x_fit_log.Count; ++i)
+        //            {
+        //                double a = compute_least_square_error_3_params(covariance_matrix, c[0], fixed_plateau2, c[1], c[2], x_fit_log[i]);
+        //                double sigma_confidence_interval = t_test_val * /*Math.Sqrt(mse/dof) */ Math.Sqrt(a); // * Math.Sqrt(sum_square_residuals / (double)dof);
+
+        //                double CI_max = Sigmoid_3_params(c, x_fit_log[i], fixed_plateau2) + sigma_confidence_interval;
+        //                double CI_min = Sigmoid_3_params(c, x_fit_log[i], fixed_plateau2) - sigma_confidence_interval;
+
+        //                if (CI_max > max_curve + 0.4 * amplitude) //|| sigma_confidence_interval > amplitude)
+        //                {
+        //                    born_sup[x_fit_log[i]] = max_curve + 0.4 * amplitude;
+        //                }
+        //                else
+        //                {
+        //                    born_sup[x_fit_log[i]] = CI_max;
+        //                }
+
+        //                if (CI_min < min_curve - 0.4 * amplitude) //|| sigma_confidence_interval > amplitude)
+        //                {
+        //                    born_inf[x_fit_log[i]] = min_curve - 0.4 * amplitude;
+        //                }
+        //                else
+        //                {
+        //                    born_inf[x_fit_log[i]] = CI_min;
+        //                }
+        //            }
+
+        //            foreach (KeyValuePair<double, double> elem in born_sup)
+        //            {
+        //                y_conf_int_born_sup.Add(elem.Value);
+        //            }
+
+        //            foreach (KeyValuePair<double, double> elem in born_inf)
+        //            {
+        //                y_conf_int_born_inf.Add(elem.Value);
+        //                x_log_unique.Add(Math.Pow(10, elem.Key));
+        //            }
+
+        //        }
+
+        //        y_fit_log.Clear();
+
+        //        for (int IdxConc = 0; IdxConc < x_fit.Count; IdxConc++)
+        //        {
+        //            y_fit_log.Add(Sigmoid_3_params(c, x_fit_log[IdxConc], fixed_plateau2));
+        //        }
+
+        //    }
+        //    else // top not fixed, fit with 4 params.
+        //    {
+        //        double BaseEC50 = Math.Log10(MaxConcentrationLin) - Math.Abs(Math.Log10(MaxConcentrationLin) - Math.Log10(MinConcentrationLin)) / 2.0;
+
+        //        double first_slope = (GlobalMax - GlobalMin) / (Math.Log10(MaxConcentrationLin) - Math.Log10(MinConcentrationLin));
+        //        if ((GlobalMax - GlobalMin) > 0)
+        //        {
+        //            first_slope = -Math.Abs(first_slope);
+        //        }
+        //        else
+        //        {
+        //            first_slope = +Math.Abs(first_slope);
+        //        }
+
+        //        double[] c = new double[] { min_bound_y, max_bound_y, BaseEC50, 0 };
+        //        double[] c2 = new double[] { min_bound_y, max_bound_y, BaseEC50, 0 };
+        //        double[] c3 = new double[] { min_bound_y, max_bound_y, BaseEC50, 0 };
+
+        //        double[] bndl = null;
+        //        double[] bndu = null;
+
+
+        //        // boundaries
+        //        bndu = new double[] { max_bound_y, max_bound_y, min_bound_x, +10 * Math.Abs(first_slope) };
+        //        bndl = new double[] { min_bound_y, min_bound_y, max_bound_x, -10 * Math.Abs(first_slope) };
+
+        //        alglib.lsfitstate state;
+        //        alglib.lsfitreport rep;
+
+        //        // Fitting without weights
+        //        //alglib.lsfitcreatefg(Concentrations, Values.ToArray(), c, false, out state);
+
+        //        double[,] Concentration = new double[drc_points_x_enable.Count(), 1];
+        //        double[] conc_0 = new double[drc_points_x_enable.Count()];
+
+        //        for (var i = 0; i < drc_points_x_enable.Count(); ++i)
+        //        {
+        //            Concentration[i, 0] = drc_points_x_enable[i];
+        //            conc_0[i] = drc_points_x_enable[i];
+        //        }
+
+        //        alglib.lsfitcreatef(Concentration, drc_points_y_enable.ToArray(), c, diffstep, out state);
+        //        alglib.lsfitsetcond(state, epsf, epsx, maxits);
+        //        alglib.lsfitsetbc(state, bndl, bndu);
+        //        // alglib.lsfitsetscale(state, s);
 
-                alglib.lsfitfit(state, function_SigmoidInhibition, null, null);
-                alglib.lsfitresults(state, out info, out c, out rep);
+        //        alglib.lsfitfit(state, function_SigmoidInhibition, null, null);
+        //        alglib.lsfitresults(state, out info, out c, out rep);
 
-                fit_parameters = c;
-                RelativeError = rep.avgrelerror;
-                r2 = rep.r2;
-                info = info;
-
-                double[,] data = new double[drc_points_x_enable.Count(), 2];
-
-                for (int i = 0; i < drc_points_x_enable.Count(); ++i)
-                {
-                    data[i, 0] = drc_points_x_enable[i];
-                    data[i, 1] = drc_points_y_enable[i];
-                }
-
-                // Method minimization chi2
-                /*
-                double epsg2 = 1e-30;
-                double epsf2 = 0;
-                double epsx2 = 0;
-                int maxits2 = 0; //10000;
-
-                alglib.minlbfgsstate state2;
-                alglib.minlbfgsreport rep2;
-
-                //double diffstep2 = 1.0e-6;
-                //double[] s2 = new double[] { 1 / c[0], 1 / c[1], 1 / c[2], 1 / c[3] };
+        //        fit_parameters = c;
+        //        RelativeError = rep.avgrelerror;
+        //        r2 = rep.r2;
+        //        info = info;
+
+        //        double[,] data = new double[drc_points_x_enable.Count(), 2];
+
+        //        for (int i = 0; i < drc_points_x_enable.Count(); ++i)
+        //        {
+        //            data[i, 0] = drc_points_x_enable[i];
+        //            data[i, 1] = drc_points_y_enable[i];
+        //        }
+
+        //        // Method minimization chi2
+        //        /*
+        //        double epsg2 = 1e-30;
+        //        double epsf2 = 0;
+        //        double epsx2 = 0;
+        //        int maxits2 = 0; //10000;
+
+        //        alglib.minlbfgsstate state2;
+        //        alglib.minlbfgsreport rep2;
+
+        //        //double diffstep2 = 1.0e-6;
+        //        //double[] s2 = new double[] { 1 / c[0], 1 / c[1], 1 / c[2], 1 / c[3] };
 
-                //alglib.minlbfgscreatef(4, c2, diffstep2, out state2);
-                alglib.minlbfgscreate(4, c2, out state2);
-                alglib.minlbfgssetcond(state2, epsg2, epsf2, epsx2, maxits2);
-                //alglib.mincgsetscale(state2, s2);
-                alglib.minlbfgsoptimize(state2, compute_chi_square, null, data);
-                alglib.minlbfgsresults(state2, out c2, out rep2);
+        //        //alglib.minlbfgscreatef(4, c2, diffstep2, out state2);
+        //        alglib.minlbfgscreate(4, c2, out state2);
+        //        alglib.minlbfgssetcond(state2, epsg2, epsf2, epsx2, maxits2);
+        //        //alglib.mincgsetscale(state2, s2);
+        //        alglib.minlbfgsoptimize(state2, compute_chi_square, null, data);
+        //        alglib.minlbfgsresults(state2, out c2, out rep2);
 
-                int code = rep2.terminationtype;
-                //rep2.varidx
-                //int code3 = rep3.terminationtype;
-                //c = c3;
-                //c = c2;
-                */
-                fit_parameters = c;
-
-                double mse = sum_sqaure_residuals(drc_points_x_enable, drc_points_y_enable, c);
-
-                if (r2 >= 0.85 && patient == false) confidence_interval = true;
-                else confidence_interval = false;
-
-                err_bottom = rep.errpar[0];
-                err_top = rep.errpar[1];
-                err_ec_50 = rep.errpar[2];
-                //err_ec_50 = 0.0;
-                err_slope = rep.errpar[3];
-
-                if (confidence_interval && display_confidence_interval)
-                {
-                    /*
-                    double[,] hessian = compute_hessian(c, data);
-
-                    alglib.matinvreport rep_mat;
-                    int info_mat;
-
-                    alglib.rmatrixinverse(ref hessian, out info_mat, out rep_mat);
-
-                    for (int i = 0; i < 4; i++)
-                    {
-                        for (int j = 0; j < 4; j++)
-                        {
-                            hessian[i, j] = 0.5 * hessian[i, j];
-                        }
-                    }
-
-                    double[,] covariance_matrix2 = hessian;
-                    */
-
-                    double[,] covariance_matrix = rep.covpar;
-
-                    //covariance_matrix[3,3] = 0.2;
-
-                    int dof = drc_points_y_enable.Count - 4;
-
-                    double t_test_val = chart.DataManipulator.Statistics.InverseTDistribution(.05, dof);
-
-                    //double sum_square_residuals = sum_sqaure_residuals(drc_points_x_enable, drc_points_y_enable, fit_parameters);
-
-                    y_conf_int_born_sup.Clear();
-                    y_conf_int_born_inf.Clear();
-                    x_log_unique.Clear();
-
-                    //double amplitude = Math.Abs(Sigmoid(c, x_fit_log[0]) - Sigmoid(c, x_fit_log[x_fit_log.Count - 1]));
-
-                    //double min_curve = Math.Min(Sigmoid(c, x_fit_log[0]), Sigmoid(c, x_fit_log[x_fit_log.Count - 1],));
-                    //double max_curve = Math.Max(Sigmoid(c, x_fit_log[0]), Sigmoid(c, x_fit_log[x_fit_log.Count - 1]));
-
-                    SortedDictionary<double, double> born_sup = new SortedDictionary<double, double>();
-                    SortedDictionary<double, double> born_inf = new SortedDictionary<double, double>();
-
-                    double min_curve = Math.Min(Sigmoid(c, x_fit_log[0]), Sigmoid(c, x_fit_log[x_fit_log.Count - 1]));
-                    double max_curve = Math.Max(Sigmoid(c, x_fit_log[0]), Sigmoid(c, x_fit_log[x_fit_log.Count - 1]));
-                    double amplitude = Math.Abs(Sigmoid(c, x_fit_log[0]) - Sigmoid(c, x_fit_log[x_fit_log.Count - 1]));
-
-                    /*
-                    for (int i = 0; i < covariance_matrix2.GetLength(0); i++)
-                    {
-                        for (int j = 0; j < covariance_matrix2.GetLength(1); ++j)
-                        {
-                            covariance_matrix2[i, j] = (double)(mse/dof) * covariance_matrix2[i, j];
-                        }
-                    }
-                    */
-
-                    double max_c = 0.0;
-
-                    for (int i = 0; i < x_fit_log.Count; ++i)
-                    {
-                        double a = compute_least_square_error(covariance_matrix, fit_parameters[0], fit_parameters[1], fit_parameters[2], fit_parameters[3], x_fit_log[i]);
-
-                        /*
-                        double a3 = compute_least_square_error2(covariance_matrix2, fit_parameters[0], fit_parameters[1], fit_parameters[2], fit_parameters[3], x_fit_log[i]);
-
-                        if (max_c < a3) max_c = a3;
-
-                        double sigma_confidence_interval = t_test_val * Math.Sqrt(mse / dof) * Math.Sqrt(a3); // * Math.Sqrt(sum_square_residuals / (double)dof);
-                        */
-
-                        double sigma_confidence_interval = t_test_val * Math.Sqrt(a); // * Math.Sqrt(sum_square_residuals / (double)dof);
-
-                        double CI_max = Sigmoid(c, x_fit_log[i]) + sigma_confidence_interval;
-                        double CI_min = Sigmoid(c, x_fit_log[i]) - sigma_confidence_interval;
-
-                        if (CI_max > max_curve + 0.4 * amplitude) //|| sigma_confidence_interval > amplitude)
-                        {
-                            born_sup[x_fit_log[i]] = max_curve + 0.4 * amplitude;
-                        }
-                        else
-                        {
-                            born_sup[x_fit_log[i]] = CI_max;
-                        }
-
-                        if (CI_min < min_curve - 0.4 * amplitude) //|| sigma_confidence_interval > amplitude)
-                        {
-                            born_inf[x_fit_log[i]] = min_curve - 0.4 * amplitude;
-                        }
-                        else
-                        {
-                            born_inf[x_fit_log[i]] = CI_min;
-                        }
-                    }
-
-                    foreach (KeyValuePair<double, double> elem in born_sup)
-                    {
-                        y_conf_int_born_sup.Add(elem.Value);
-                    }
-
-                    foreach (KeyValuePair<double, double> elem in born_inf)
-                    {
-                        y_conf_int_born_inf.Add(elem.Value);
-                        x_log_unique.Add(Math.Pow(10, elem.Key));
-                    }
-
-                }
-
-                y_fit_log.Clear();
-
-                for (int IdxConc = 0; IdxConc < x_fit.Count; IdxConc++)
-                {
-                    y_fit_log.Add(Sigmoid(c, x_fit_log[IdxConc]));
-                }
-            }
-        }
+        //        int code = rep2.terminationtype;
+        //        //rep2.varidx
+        //        //int code3 = rep3.terminationtype;
+        //        //c = c3;
+        //        //c = c2;
+        //        */
+        //        fit_parameters = c;
+
+        //        double mse = sum_sqaure_residuals(drc_points_x_enable, drc_points_y_enable, c);
+
+        //        if (r2 >= 0.85 && patient == false) confidence_interval = true;
+        //        else confidence_interval = false;
+
+        //        err_bottom = rep.errpar[0];
+        //        err_top = rep.errpar[1];
+        //        err_ec_50 = rep.errpar[2];
+        //        //err_ec_50 = 0.0;
+        //        err_slope = rep.errpar[3];
+
+        //        if (confidence_interval && display_confidence_interval)
+        //        {
+        //            /*
+        //            double[,] hessian = compute_hessian(c, data);
+
+        //            alglib.matinvreport rep_mat;
+        //            int info_mat;
+
+        //            alglib.rmatrixinverse(ref hessian, out info_mat, out rep_mat);
+
+        //            for (int i = 0; i < 4; i++)
+        //            {
+        //                for (int j = 0; j < 4; j++)
+        //                {
+        //                    hessian[i, j] = 0.5 * hessian[i, j];
+        //                }
+        //            }
+
+        //            double[,] covariance_matrix2 = hessian;
+        //            */
+
+        //            double[,] covariance_matrix = rep.covpar;
+
+        //            //covariance_matrix[3,3] = 0.2;
+
+        //            int dof = drc_points_y_enable.Count - 4;
+
+        //            double t_test_val = chart.DataManipulator.Statistics.InverseTDistribution(.05, dof);
+
+        //            //double sum_square_residuals = sum_sqaure_residuals(drc_points_x_enable, drc_points_y_enable, fit_parameters);
+
+        //            y_conf_int_born_sup.Clear();
+        //            y_conf_int_born_inf.Clear();
+        //            x_log_unique.Clear();
+
+        //            //double amplitude = Math.Abs(Sigmoid(c, x_fit_log[0]) - Sigmoid(c, x_fit_log[x_fit_log.Count - 1]));
+
+        //            //double min_curve = Math.Min(Sigmoid(c, x_fit_log[0]), Sigmoid(c, x_fit_log[x_fit_log.Count - 1],));
+        //            //double max_curve = Math.Max(Sigmoid(c, x_fit_log[0]), Sigmoid(c, x_fit_log[x_fit_log.Count - 1]));
+
+        //            SortedDictionary<double, double> born_sup = new SortedDictionary<double, double>();
+        //            SortedDictionary<double, double> born_inf = new SortedDictionary<double, double>();
+
+        //            double min_curve = Math.Min(Sigmoid(c, x_fit_log[0]), Sigmoid(c, x_fit_log[x_fit_log.Count - 1]));
+        //            double max_curve = Math.Max(Sigmoid(c, x_fit_log[0]), Sigmoid(c, x_fit_log[x_fit_log.Count - 1]));
+        //            double amplitude = Math.Abs(Sigmoid(c, x_fit_log[0]) - Sigmoid(c, x_fit_log[x_fit_log.Count - 1]));
+
+        //            /*
+        //            for (int i = 0; i < covariance_matrix2.GetLength(0); i++)
+        //            {
+        //                for (int j = 0; j < covariance_matrix2.GetLength(1); ++j)
+        //                {
+        //                    covariance_matrix2[i, j] = (double)(mse/dof) * covariance_matrix2[i, j];
+        //                }
+        //            }
+        //            */
+
+        //            double max_c = 0.0;
+
+        //            for (int i = 0; i < x_fit_log.Count; ++i)
+        //            {
+        //                double a = compute_least_square_error(covariance_matrix, fit_parameters[0], fit_parameters[1], fit_parameters[2], fit_parameters[3], x_fit_log[i]);
+
+        //                /*
+        //                double a3 = compute_least_square_error2(covariance_matrix2, fit_parameters[0], fit_parameters[1], fit_parameters[2], fit_parameters[3], x_fit_log[i]);
+
+        //                if (max_c < a3) max_c = a3;
+
+        //                double sigma_confidence_interval = t_test_val * Math.Sqrt(mse / dof) * Math.Sqrt(a3); // * Math.Sqrt(sum_square_residuals / (double)dof);
+        //                */
+
+        //                double sigma_confidence_interval = t_test_val * Math.Sqrt(a); // * Math.Sqrt(sum_square_residuals / (double)dof);
+
+        //                double CI_max = Sigmoid(c, x_fit_log[i]) + sigma_confidence_interval;
+        //                double CI_min = Sigmoid(c, x_fit_log[i]) - sigma_confidence_interval;
+
+        //                if (CI_max > max_curve + 0.4 * amplitude) //|| sigma_confidence_interval > amplitude)
+        //                {
+        //                    born_sup[x_fit_log[i]] = max_curve + 0.4 * amplitude;
+        //                }
+        //                else
+        //                {
+        //                    born_sup[x_fit_log[i]] = CI_max;
+        //                }
+
+        //                if (CI_min < min_curve - 0.4 * amplitude) //|| sigma_confidence_interval > amplitude)
+        //                {
+        //                    born_inf[x_fit_log[i]] = min_curve - 0.4 * amplitude;
+        //                }
+        //                else
+        //                {
+        //                    born_inf[x_fit_log[i]] = CI_min;
+        //                }
+        //            }
+
+        //            foreach (KeyValuePair<double, double> elem in born_sup)
+        //            {
+        //                y_conf_int_born_sup.Add(elem.Value);
+        //            }
+
+        //            foreach (KeyValuePair<double, double> elem in born_inf)
+        //            {
+        //                y_conf_int_born_inf.Add(elem.Value);
+        //                x_log_unique.Add(Math.Pow(10, elem.Key));
+        //            }
+
+        //        }
+
+        //        y_fit_log.Clear();
+
+        //        for (int IdxConc = 0; IdxConc < x_fit.Count; IdxConc++)
+        //        {
+        //            y_fit_log.Add(Sigmoid(c, x_fit_log[IdxConc]));
+        //        }
+        //    }
+        //}
         public void fit_DRC()
         {
             double GlobalMax = double.MinValue;
@@ -8642,32 +8850,71 @@ namespace DRC
             int maxits = 0;
             int info;
 
+            double BaseEC50 = Math.Log10(MaxConcentrationLin) - Math.Abs(Math.Log10(MaxConcentrationLin) - Math.Log10(MinConcentrationLin)) / 2.0;
+
+            double first_slope = (GlobalMax - GlobalMin) / (Math.Log10(MaxConcentrationLin) - Math.Log10(MinConcentrationLin));
+            double first_slope_neg = 0.0;
+            double first_slope_pos = 0.0;
+
+            first_slope_pos = +Math.Abs(first_slope);
+            first_slope_neg = -Math.Abs(first_slope);
+
             if (bound_auto)
             {
-                min_bound_y = GlobalMin;
-                max_bound_y = GlobalMax;
+                min_bound_plateau1 = 10 * Math.Abs(GlobalMax);
+                max_bound_plateau1 = -10 * Math.Abs(GlobalMax);
 
-                min_bound_x = Math.Log10(MaxConcentrationLin) + 1.0;
-                max_bound_x = Math.Log10(MinConcentrationLin) - 1.0;
+                min_bound_plateau2 = 10 * Math.Abs(GlobalMax);
+                max_bound_plateau2 = -10 * Math.Abs(GlobalMax);
+
+                min_bound_dip = 10 * Math.Abs(GlobalMax);
+                max_bound_dip = -10 * Math.Abs(GlobalMax);
+
+                min_bound_ec50_1 = 0.5 * BaseEC50;
+                max_bound_ec50_1 = 2.0 * BaseEC50;
+
+                min_bound_ec50_2 = 0.5 * BaseEC50;
+                max_bound_ec50_2 = 2.0 * BaseEC50;
+
+                min_bound_slope1 = -10 * first_slope_neg;
+                max_bound_slope1 = +10 * first_slope_neg;
+
+                min_bound_slope2 = -10 * first_slope_pos;
+                max_bound_slope2 = +10 * first_slope_pos;
+
+                //min_bound_x = Math.Log10(MaxConcentrationLin) + 1.0;
+                //max_bound_x = Math.Log10(MinConcentrationLin) - 1.0;
             }
 
             if (fit_bounds.Count() > 0 && manual_bounds && !bound_auto)
             {
-                min_bound_y = fit_bounds["min_y"];
-                max_bound_y = fit_bounds["max_y"];
+                //min_bound_y = fit_bounds["min_y"];
+                //max_bound_y = fit_bounds["max_y"];
 
-                min_bound_x = fit_bounds["min_x"];
-                max_bound_x = fit_bounds["max_x"];
+                min_bound_plateau1 = fit_bounds["min_plateau1"];
+                max_bound_plateau1 = fit_bounds["max_plateau1"];
+
+                min_bound_plateau2 = fit_bounds["min_plateau2"];
+                max_bound_plateau2 = fit_bounds["max_plateau2"];
+
+                min_bound_dip = fit_bounds["min_dip"];
+                max_bound_dip = fit_bounds["max_dip"];
+
+                min_bound_ec50_1 = fit_bounds["min_ec50_1"];
+                max_bound_ec50_1 = fit_bounds["max_ec50_1"];
+
+                min_bound_ec50_2 = fit_bounds["min_ec50_2"];
+                max_bound_ec50_2 = fit_bounds["max_ec50_2"];
+
+                min_bound_slope1 = fit_bounds["min_slope1"];
+                max_bound_slope1 = fit_bounds["max_slope1"];
+
+                min_bound_slope2 = fit_bounds["min_slope2"];
+                max_bound_slope2 = fit_bounds["max_slope2"];
+
+                //min_bound_x = fit_bounds["min_x"];
+                //max_bound_x = fit_bounds["max_x"];
             }
-
-            double BaseEC50 = Math.Log10(MaxConcentrationLin) - Math.Abs(Math.Log10(MaxConcentrationLin) - Math.Log10(MinConcentrationLin)) / 2.0;
-
-            double first_slope = (GlobalMax - GlobalMin) / (Math.Log10(MaxConcentrationLin) - Math.Log10(MinConcentrationLin));
-            double first_slope_neg = 0;
-            double first_slope_pos = 0;
-
-            first_slope_pos = +Math.Abs(first_slope);
-            first_slope_neg = -Math.Abs(first_slope);
 
             //if ((GlobalMax - GlobalMin) > 0)
             //{
@@ -8689,17 +8936,17 @@ namespace DRC
             // nH1 slope1 = c[5]
             // nH2 slope2 = c[6]
 
-            double[] c = new double[] { min_bound_y, max_bound_y, max_bound_y, BaseEC50, BaseEC50, 0, 0 };
+            double[] c = new double[] { GlobalMin, GlobalMax, GlobalMax, BaseEC50, BaseEC50, 1, -1 };
 
-            double[] c2 = new double[] { min_bound_y, max_bound_y, max_bound_y, BaseEC50, BaseEC50, 0, 0 };
-            double[] c3 = new double[] { min_bound_y, max_bound_y, max_bound_y, BaseEC50, BaseEC50, 0, 0 };
+            double[] c2 = new double[] { GlobalMin, GlobalMax, GlobalMax, BaseEC50, BaseEC50, 1, -1 };
+            double[] c3 = new double[] { GlobalMin, GlobalMax, GlobalMax, BaseEC50, BaseEC50, 1, -1 };
 
             double[] bndl = null;
             double[] bndu = null;
 
             // boundaries
-            bndu = new double[] { 10 * Math.Abs(max_bound_x), 10 * Math.Abs(max_bound_x), 10 * Math.Abs(max_bound_x), 0.5 * BaseEC50, 0.5 * BaseEC50, -10 * first_slope_neg, +10 * first_slope_pos };
-            bndl = new double[] { -10 * Math.Abs(max_bound_x), -10 * Math.Abs(max_bound_x), -10 * Math.Abs(max_bound_x), 2 * BaseEC50, 2 * BaseEC50, +10 * first_slope_neg, -10 * first_slope_pos };
+            bndl = new double[] { min_bound_plateau1, min_bound_plateau2, min_bound_dip, min_bound_ec50_1, min_bound_ec50_2, min_bound_slope1, min_bound_slope2 };
+            bndu = new double[] { max_bound_plateau1, max_bound_plateau2, max_bound_dip, max_bound_ec50_1, max_bound_ec50_2, max_bound_slope2, max_bound_slope2 };
 
             alglib.lsfitstate state;
             alglib.lsfitreport rep;
