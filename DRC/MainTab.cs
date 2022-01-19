@@ -1420,10 +1420,20 @@ namespace DRC
                 }
 
                 List<string> bnds_type = new List<string>();
-                bnds_type.Add("min_x");
-                bnds_type.Add("max_x");
-                bnds_type.Add("min_y"); kuguugo
-                bnds_type.Add("max_y");
+                bnds_type.Add("min_plateau1");
+                bnds_type.Add("max_plateau1");
+                bnds_type.Add("min_plateau2");
+                bnds_type.Add("max_plateau2");
+                bnds_type.Add("min_dip");
+                bnds_type.Add("max_dip");
+                bnds_type.Add("min_ec50_1");
+                bnds_type.Add("max_ec50_1");
+                bnds_type.Add("min_ec50_2");
+                bnds_type.Add("max_ec50_2");
+                bnds_type.Add("min_slope1");
+                bnds_type.Add("max_slope1");
+                bnds_type.Add("min_slope2");
+                bnds_type.Add("max_slope2");
 
                 for (int descriptor_index = 0; descriptor_index < descritpor_number; descriptor_index++)
                 {
@@ -1602,7 +1612,7 @@ namespace DRC
                         {
 
                             DataGridViewTextBoxCell newCell = new DataGridViewTextBoxCell();
-                            newCell.Value = bound_x_min;
+                            newCell.Value = bound_plateau1_min;
 
                             chart_row_data[k].Cells.Add(newCell);
 
@@ -1614,7 +1624,7 @@ namespace DRC
                         {
 
                             DataGridViewTextBoxCell newCell = new DataGridViewTextBoxCell();
-                            newCell.Value = bound_x_max;
+                            newCell.Value = bound_plateau1_max;
 
                             chart_row_data[k].Cells.Add(newCell);
 
@@ -1626,7 +1636,7 @@ namespace DRC
                         {
 
                             DataGridViewTextBoxCell newCell = new DataGridViewTextBoxCell();
-                            newCell.Value = bound_y_min;
+                            newCell.Value = bound_plateau2_min;
 
                             chart_row_data[k].Cells.Add(newCell);
 
@@ -1638,7 +1648,127 @@ namespace DRC
                         {
 
                             DataGridViewTextBoxCell newCell = new DataGridViewTextBoxCell();
-                            newCell.Value = bound_y_max;
+                            newCell.Value = bound_plateau2_max;
+
+                            chart_row_data[k].Cells.Add(newCell);
+
+                            ++k;
+                        }
+
+                        k = 0;
+                        foreach (bool elem in removed_raw_data_cpd)
+                        {
+
+                            DataGridViewTextBoxCell newCell = new DataGridViewTextBoxCell();
+                            newCell.Value = bound_dip_min;
+
+                            chart_row_data[k].Cells.Add(newCell);
+
+                            ++k;
+                        }
+
+                        k = 0;
+                        foreach (bool elem in removed_raw_data_cpd)
+                        {
+
+                            DataGridViewTextBoxCell newCell = new DataGridViewTextBoxCell();
+                            newCell.Value = bound_dip_max;
+
+                            chart_row_data[k].Cells.Add(newCell);
+
+                            ++k;
+                        }
+
+                        k = 0;
+                        foreach (bool elem in removed_raw_data_cpd)
+                        {
+
+                            DataGridViewTextBoxCell newCell = new DataGridViewTextBoxCell();
+                            newCell.Value = bound_ec50_1_min;
+
+                            chart_row_data[k].Cells.Add(newCell);
+
+                            ++k;
+                        }
+
+                        k = 0;
+                        foreach (bool elem in removed_raw_data_cpd)
+                        {
+
+                            DataGridViewTextBoxCell newCell = new DataGridViewTextBoxCell();
+                            newCell.Value = bound_ec50_1_max;
+
+                            chart_row_data[k].Cells.Add(newCell);
+
+                            ++k;
+                        }
+
+                        k = 0;
+                        foreach (bool elem in removed_raw_data_cpd)
+                        {
+
+                            DataGridViewTextBoxCell newCell = new DataGridViewTextBoxCell();
+                            newCell.Value = bound_ec50_2_min;
+
+                            chart_row_data[k].Cells.Add(newCell);
+
+                            ++k;
+                        }
+
+                        k = 0;
+                        foreach (bool elem in removed_raw_data_cpd)
+                        {
+
+                            DataGridViewTextBoxCell newCell = new DataGridViewTextBoxCell();
+                            newCell.Value = bound_ec50_2_max;
+
+                            chart_row_data[k].Cells.Add(newCell);
+
+                            ++k;
+                        }
+
+                        k = 0;
+                        foreach (bool elem in removed_raw_data_cpd)
+                        {
+
+                            DataGridViewTextBoxCell newCell = new DataGridViewTextBoxCell();
+                            newCell.Value = bound_slope1_min;
+
+                            chart_row_data[k].Cells.Add(newCell);
+
+                            ++k;
+                        }
+
+                        k = 0;
+                        foreach (bool elem in removed_raw_data_cpd)
+                        {
+
+                            DataGridViewTextBoxCell newCell = new DataGridViewTextBoxCell();
+                            newCell.Value = bound_slope1_max;
+
+                            chart_row_data[k].Cells.Add(newCell);
+
+                            ++k;
+                        }
+
+                        k = 0;
+                        foreach (bool elem in removed_raw_data_cpd)
+                        {
+
+                            DataGridViewTextBoxCell newCell = new DataGridViewTextBoxCell();
+                            newCell.Value = bound_slope2_min;
+
+                            chart_row_data[k].Cells.Add(newCell);
+
+                            ++k;
+                        }
+
+                        k = 0;
+                        foreach (bool elem in removed_raw_data_cpd)
+                        {
+
+                            DataGridViewTextBoxCell newCell = new DataGridViewTextBoxCell();
+                            newCell.Value = bound_slope2_max;
 
                             chart_row_data[k].Cells.Add(newCell);
 
@@ -9146,7 +9276,7 @@ namespace DRC
 
             double BaseEC50 = Math.Log10(MaxConcentrationLin) - Math.Abs(Math.Log10(MaxConcentrationLin) - Math.Log10(MinConcentrationLin)) / 2.0;
 
-            double first_slope = (GlobalMax - GlobalMin) / (Math.Log10(MaxConcentrationLin) - Math.Log10(MinConcentrationLin));
+            double first_slope = (GlobalMax - GlobalMin) / (Math.Log10(MaxConcentrationLin)+1 - (Math.Log10(MinConcentrationLin)-1));
             double first_slope_neg = 0.0;
             double first_slope_pos = 0.0;
 
@@ -9155,26 +9285,26 @@ namespace DRC
 
             if (bound_auto)
             {
-                min_bound_plateau1 = 10 * Math.Abs(GlobalMax);
-                max_bound_plateau1 = -10 * Math.Abs(GlobalMax);
+                min_bound_plateau1 = -10 * Math.Abs(GlobalMax);
+                max_bound_plateau1 = +10 * Math.Abs(GlobalMax);
 
-                min_bound_plateau2 = 10 * Math.Abs(GlobalMax);
-                max_bound_plateau2 = -10 * Math.Abs(GlobalMax);
+                min_bound_plateau2 = -10 * Math.Abs(GlobalMax);
+                max_bound_plateau2 = +10 * Math.Abs(GlobalMax);
 
-                min_bound_dip = 10 * Math.Abs(GlobalMax);
-                max_bound_dip = -10 * Math.Abs(GlobalMax);
+                min_bound_dip = -10 * Math.Abs(GlobalMax);
+                max_bound_dip = +10 * Math.Abs(GlobalMax);
 
-                min_bound_ec50_1 = 0.5 * BaseEC50;
-                max_bound_ec50_1 = 2.0 * BaseEC50;
+                min_bound_ec50_1 = 2.0 * BaseEC50;
+                max_bound_ec50_1 = 0.5 * BaseEC50;
 
-                min_bound_ec50_2 = 0.5 * BaseEC50;
-                max_bound_ec50_2 = 2.0 * BaseEC50;
+                min_bound_ec50_2 = 2.0 * BaseEC50;
+                max_bound_ec50_2 = 0.5 * BaseEC50;
 
-                min_bound_slope1 = -10 * first_slope_neg;
-                max_bound_slope1 = +10 * first_slope_neg;
+                min_bound_slope1 = -25 * Math.Abs(first_slope_neg);
+                max_bound_slope1 = +25 * Math.Abs(first_slope_neg);
 
-                min_bound_slope2 = -10 * first_slope_pos;
-                max_bound_slope2 = +10 * first_slope_pos;
+                min_bound_slope2 = -25 * Math.Abs(first_slope_pos);
+                max_bound_slope2 = +25 * Math.Abs(first_slope_pos);
 
                 //min_bound_x = Math.Log10(MaxConcentrationLin) + 1.0;
                 //max_bound_x = Math.Log10(MinConcentrationLin) - 1.0;
