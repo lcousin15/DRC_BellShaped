@@ -4683,7 +4683,7 @@ namespace DRC
                 }
             }
         }
-        public void apply_descritpor_general_bounds(string descriptor_name, double bnd_min_x, double bnd_max_x, double bnd_min_y, double bnd_max_y)
+        public void apply_descritpor_general_bounds(string descriptor_name, double[] bounds_min, double[] bounds_max, bool[] if_bounds_min, bool[] if_bounds_max)
         {
             foreach (KeyValuePair<string, List<Chart_DRC>> elem in descriptors_chart)
             {
@@ -4697,10 +4697,20 @@ namespace DRC
                         current_chart.set_general_params(true);
                         current_chart.set_data_modified(true);
 
-                        current_chart.set_min_bound_x(Math.Log10(bnd_min_x));
-                        current_chart.set_max_bound_x(Math.Log10(bnd_max_x));
-                        current_chart.set_min_bound_y(bnd_min_y);
-                        current_chart.set_max_bound_y(bnd_max_y);
+                        if (if_bounds_min[0]) current_chart.set_min_bound_plateau1(bounds_min[0]);
+                        if (if_bounds_max[0]) current_chart.set_max_bound_plateau1(bounds_max[0]);
+                        if (if_bounds_min[1]) current_chart.set_min_bound_plateau2(bounds_min[1]);
+                        if (if_bounds_max[1]) current_chart.set_max_bound_plateau2(bounds_max[1]);
+                        if (if_bounds_min[2]) current_chart.set_min_bound_dip(bounds_min[2]);
+                        if (if_bounds_max[2]) current_chart.set_max_bound_dip(bounds_max[2]);
+                        if (if_bounds_min[3]) current_chart.set_min_bound_ec50_1(Math.Log10(bounds_min[3]));
+                        if (if_bounds_max[3]) current_chart.set_max_bound_ec50_1(Math.Log10(bounds_max[3]));
+                        if (if_bounds_min[4]) current_chart.set_min_bound_ec50_2(Math.Log10(bounds_min[4]));
+                        if (if_bounds_max[4]) current_chart.set_max_bound_ec50_2(Math.Log10(bounds_max[4]));
+                        if (if_bounds_min[5]) current_chart.set_min_bound_slope1(bounds_min[5]);
+                        if (if_bounds_max[5]) current_chart.set_max_bound_slope1(bounds_max[5]);
+                        if (if_bounds_min[6]) current_chart.set_min_bound_slope2(bounds_min[6]);
+                        if (if_bounds_max[6]) current_chart.set_max_bound_slope2(bounds_max[6]);
 
                         current_chart.draw_DRC(false, false);
                     }
