@@ -8430,8 +8430,8 @@ namespace DRC
             // nH1 slope1 = c[5]
             // nH2 slope2 = c[6]
 
-            double Sp1 = c[0] - c[2] + 0.0001;
-            double Sp2 = c[1] - c[2] + 0.0001;
+            double Sp1 = c[0] - c[2];
+            double Sp2 = c[1] - c[2];
 
             double S1 = Sp1 / (1 + Math.Pow(10, ((c[3] - x) * c[5])));
             double S2 = Sp2 / (1 + Math.Pow(10, ((x - c[4]) * c[6])));
