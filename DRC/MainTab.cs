@@ -7277,10 +7277,13 @@ namespace DRC
         private double r2;
         private double RelativeError;
 
-        private double err_bottom;
-        private double err_top;
-        private double err_ec_50;
-        private double err_slope;
+        private double err_plateau1;
+        private double err_plateau2;
+        private double err_dip;
+        private double err_ec50_1;
+        private double err_ec50_2;
+        private double err_slope1;
+        private double err_slope2;
 
         private string compound_id;
         private string descriptor;
@@ -8446,6 +8449,8 @@ namespace DRC
 
             double Y = c[2] + S1 + S2;
 
+            // Y = a2 + (a0 - a2) / (1 + 10 ^ ((a3 - x) * a5)) + (a1 - a2) / (1 + 10 ^ ((x - a4) * a6))
+
             return Y;
         }
 
@@ -8484,6 +8489,40 @@ namespace DRC
             return y;
         }
 
+        private double compute_jacobian_param_bellshaped_0(double a0, double a1, double a2, double a3, double a4, double a5, double a6, double x)
+        {
+            return 1 / (1 + Math.Pow(10, (a3 - x) * a5));
+        }
+
+        private double compute_jacobian_param_bellshaped_1(double a0, double a1, double a2, double a3, double a4, double a5, double a6, double x)
+        {
+            return 1 / (1 + Math.Pow(10, (a4 - x) * a6));
+        }
+
+        private double compute_jacobian_param_bellshaped_2(double a0, double a1, double a2, double a3, double a4, double a5, double a6, double x)
+        {
+            return 1 - 1 / (1 + Math.Pow(10, (a3 - x) * a5)) - 1 / (1 + Math.Pow(10, (a4 - x) * a6));
+        }
+
+        private double compute_jacobian_param_bellshaped_3(double a0, double a1, double a2, double a3, double a4, double a5, double a6, double x)
+        {
+            return (-a5 * Math.Log(10) * (a0 - a2) * Math.Pow(10, a5 * (a3 + x))) / ((Math.Pow(10, a3 * a5) + Math.Pow(10, a5 * x)) * (Math.Pow(10, a3 * a5) + Math.Pow(10, a5 * x)));
+        }
+
+        private double compute_jacobian_param_bellshaped_4(double a0, double a1, double a2, double a3, double a4, double a5, double a6, double x)
+        {
+            return (-a6 * Math.Log(10) * (a1 - a2) * Math.Pow(10, a6 * (a4 + x))) / ((Math.Pow(10, a4 * a6) + Math.Pow(10, a6 * x)) * (Math.Pow(10, a4 * a6) + Math.Pow(10, a6 * x)));
+        }
+
+        private double compute_jacobian_param_bellshaped_5(double a0, double a1, double a2, double a3, double a4, double a5, double a6, double x)
+        {
+            return (-Math.Log(10) * (a0 - a2) * (a3 - x) * Math.Pow(10, a5 * (a3 + x))) / ((Math.Pow(10, a3 * a5) + Math.Pow(10, a5 * x)) * (Math.Pow(10, a3 * a5) + Math.Pow(10, a5 * x)));
+        }
+
+        private double compute_jacobian_param_bellshaped_6(double a0, double a1, double a2, double a3, double a4, double a5, double a6, double x)
+        {
+            return (-Math.Log(10) * (a1 - a2) * (a4 - x) * Math.Pow(10, a6 * (a4 + x))) / ((Math.Pow(10, a4 * a6) + Math.Pow(10, a6 * x)) * (Math.Pow(10, a4 * a6) + Math.Pow(10, a6 * x)));
+        }
         private double compute_jacobian_param_0(double a0, double a1, double a2, double a3, double x)
         {
             return 1.0 - 1.0 / (1 + Math.Pow(10, a3 * (a2 - x)));
@@ -8774,6 +8813,29 @@ namespace DRC
             return c;
         }
 
+        private double compute_least_square_error_bellshaped(double[,] cov, double a0, double a1, double a2, double a3, double a4, double a5, double a6, double x)
+        {
+
+            double[,] jacobian = {
+                {compute_jacobian_param_bellshaped_0(a0, a1, a2, a3, a4, a5, a6, x)},
+                {compute_jacobian_param_bellshaped_1(a0, a1, a2, a3, a4, a5, a6, x)},
+                {compute_jacobian_param_bellshaped_2(a0, a1, a2, a3, a4, a5, a6, x)},
+                {compute_jacobian_param_bellshaped_3(a0, a1, a2, a3, a4, a5, a6, x)},
+                {compute_jacobian_param_bellshaped_4(a0, a1, a2, a3, a4, a5, a6, x)},
+                {compute_jacobian_param_bellshaped_5(a0, a1, a2, a3, a4, a5, a6, x)},
+                {compute_jacobian_param_bellshaped_6(a0, a1, a2, a3, a4, a5, a6, x)} };
+
+            double[,] jacobianT = jacobian.Transpose();
+
+            double[,] A = cov.Dot(jacobian);
+
+            double[,] B = jacobianT.Dot(A);
+
+            double c = B[0, 0];
+
+            return c;
+        }
+
         private double compute_least_square_error2(double[,] cov, double a0, double a1, double a2, double a3, double x)
         {
 
@@ -8847,14 +8909,14 @@ namespace DRC
             {
                 double x = drc_points_x_enable[i];
 
-                double y_fit_curve = Sigmoid(c, x);
+                double y_fit_curve = BellShaped(c, x);
 
                 double residual_square = (drc_points_y_enable[i] - y_fit_curve) * (drc_points_y_enable[i] - y_fit_curve);
 
                 sum_square_residuals += residual_square;
             }
 
-            return sum_square_residuals;
+            return sum_square_residuals / drc_points_x_enable.Count;
         }
 
         private double sum_sqaure_residuals_3_params(List<double> drc_points_x_enable, List<double> drc_points_y_enable, double[] c, double top)
@@ -9449,13 +9511,15 @@ namespace DRC
             if (r2 >= 0.85 && patient == false) confidence_interval = true;
             else confidence_interval = false;
 
-            err_bottom = rep.errpar[0];
-            err_top = rep.errpar[1];
-            err_ec_50 = rep.errpar[2];
-            //err_ec_50 = 0.0;
-            err_slope = rep.errpar[3];
+            err_plateau1 = rep.errpar[0];
+            err_plateau2 = rep.errpar[1];
+            err_dip = rep.errpar[2];
+            err_ec50_1 = rep.errpar[3];
+            err_ec50_2 = rep.errpar[4];
+            err_slope1 = rep.errpar[5];
+            err_slope2 = rep.errpar[6];
 
-            confidence_interval = false;
+            confidence_interval = false; // DOESN'T DRAW the CI !
 
             if (confidence_interval && display_confidence_interval)
             {
@@ -9482,7 +9546,7 @@ namespace DRC
 
                 //covariance_matrix[3,3] = 0.2;
 
-                int dof = drc_points_y_enable.Count - 4;
+                int dof = drc_points_y_enable.Count - 7;
 
                 double t_test_val = chart.DataManipulator.Statistics.InverseTDistribution(.05, dof);
 
@@ -9500,9 +9564,17 @@ namespace DRC
                 SortedDictionary<double, double> born_sup = new SortedDictionary<double, double>();
                 SortedDictionary<double, double> born_inf = new SortedDictionary<double, double>();
 
-                double min_curve = Math.Min(Sigmoid(c, x_fit_log[0]), Sigmoid(c, x_fit_log[x_fit_log.Count - 1]));
-                double max_curve = Math.Max(Sigmoid(c, x_fit_log[0]), Sigmoid(c, x_fit_log[x_fit_log.Count - 1]));
-                double amplitude = Math.Abs(Sigmoid(c, x_fit_log[0]) - Sigmoid(c, x_fit_log[x_fit_log.Count - 1]));
+                double min_curve = +Double.MaxValue;
+                double max_curve = -Double.MaxValue;
+
+                for (var k = 0; k < x_fit_log.Count; k++)
+                {
+                    double current_y = BellShaped(c, x_fit_log[k]);
+                    min_curve = Math.Min(min_curve, current_y);
+                    max_curve = Math.Max(max_curve, current_y);
+                }
+
+                double amplitude = max_curve - min_curve;
 
                 /*
                 for (int i = 0; i < covariance_matrix2.GetLength(0); i++)
@@ -9518,7 +9590,7 @@ namespace DRC
 
                 for (int i = 0; i < x_fit_log.Count; ++i)
                 {
-                    double a = compute_least_square_error(covariance_matrix, fit_parameters[0], fit_parameters[1], fit_parameters[2], fit_parameters[3], x_fit_log[i]);
+                    double a = compute_least_square_error_bellshaped(covariance_matrix, fit_parameters[0], fit_parameters[1], fit_parameters[2], fit_parameters[3], fit_parameters[4], fit_parameters[5], fit_parameters[6], x_fit_log[i]);
 
                     /*
                     double a3 = compute_least_square_error2(covariance_matrix2, fit_parameters[0], fit_parameters[1], fit_parameters[2], fit_parameters[3], x_fit_log[i]);
@@ -9528,10 +9600,10 @@ namespace DRC
                     double sigma_confidence_interval = t_test_val * Math.Sqrt(mse / dof) * Math.Sqrt(a3); // * Math.Sqrt(sum_square_residuals / (double)dof);
                     */
 
-                    double sigma_confidence_interval = t_test_val * Math.Sqrt(a); // * Math.Sqrt(sum_square_residuals / (double)dof);
+                    double sigma_confidence_interval = t_test_val * Math.Sqrt(mse / dof) * Math.Sqrt(a); // * Math.Sqrt(sum_square_residuals / (double)dof);
 
-                    double CI_max = Sigmoid(c, x_fit_log[i]) + sigma_confidence_interval;
-                    double CI_min = Sigmoid(c, x_fit_log[i]) - sigma_confidence_interval;
+                    double CI_max = BellShaped(c, x_fit_log[i]) + sigma_confidence_interval;
+                    double CI_min = BellShaped(c, x_fit_log[i]) - sigma_confidence_interval;
 
                     if (CI_max > max_curve + 0.4 * amplitude) //|| sigma_confidence_interval > amplitude)
                     {
