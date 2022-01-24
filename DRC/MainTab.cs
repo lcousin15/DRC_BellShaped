@@ -8430,6 +8430,14 @@ namespace DRC
             // nH1 slope1 = c[5]
             // nH2 slope2 = c[6]
 
+            if (is_plateau1_fixed) c[0] = get_plateau1_fixed();
+            if (is_plateau2_fixed) c[1] = get_plateau2_fixed();
+            if (is_dip_fixed) c[2] = get_dip_fixed();
+            if (is_ec50_1_fixed) c[3] = get_ec50_1_fixed();
+            if (is_ec50_2_fixed) c[4] = get_ec50_2_fixed();
+            if (is_slope1_fixed) c[5] = get_slope1_fixed();
+            if (is_slope2_fixed) c[6] = get_slope2_fixed();
+
             double Sp1 = c[0] - c[2];
             double Sp2 = c[1] - c[2];
 
