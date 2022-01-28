@@ -8916,7 +8916,7 @@ namespace DRC
                 sum_square_residuals += residual_square;
             }
 
-            return sum_square_residuals / drc_points_x_enable.Count;
+            return sum_square_residuals; // / drc_points_x_enable.Count;
         }
 
         private double sum_sqaure_residuals_3_params(List<double> drc_points_x_enable, List<double> drc_points_y_enable, double[] c, double top)
@@ -9337,8 +9337,8 @@ namespace DRC
             GlobalMin = MinValues - 0.05 * Math.Abs(MinValues);
 
             double epsf = 0;
-            double epsx = 1e-6; // 0.000000001;
-            double diffstep = 1e-8;
+            double epsx = 1e-12; // 0.000000001;
+            double diffstep = 1e-15;
 
             //double epsx = 1e-6;
             int maxits = 0;
@@ -9519,7 +9519,7 @@ namespace DRC
             err_slope1 = rep.errpar[5];
             err_slope2 = rep.errpar[6];
 
-            confidence_interval = false; // DOESN'T DRAW the CI !
+            //confidence_interval = false; // DOESN'T DRAW the CI !
 
             if (confidence_interval && display_confidence_interval)
             {
@@ -9600,7 +9600,14 @@ namespace DRC
                     double sigma_confidence_interval = t_test_val * Math.Sqrt(mse / dof) * Math.Sqrt(a3); // * Math.Sqrt(sum_square_residuals / (double)dof);
                     */
 
-                    double sigma_confidence_interval = t_test_val * Math.Sqrt(mse / dof) * Math.Sqrt(a); // * Math.Sqrt(sum_square_residuals / (double)dof);
+                    double sigma_confidence_interval = t_test_val * Math.Sqrt(mse / dof * a); // * Math.Sqrt(sum_square_residuals / (double)dof);
+
+                    if(sigma_confidence_interval > 0.4)
+                    {
+                        confidence_interval = false;
+                        display_confidence_interval = false;
+                        break;
+                    }
 
                     double CI_max = BellShaped(c, x_fit_log[i]) + sigma_confidence_interval;
                     double CI_min = BellShaped(c, x_fit_log[i]) - sigma_confidence_interval;
@@ -12502,7 +12509,7 @@ namespace DRC
             double[] c = new double[] { GlobalMin, GlobalMax, BaseEC50, 1 };
 
             double epsf = 0;
-            double epsx = 0;
+            double epsx = 1e-12;
 
             int maxits = 0;
             int info;
@@ -12516,7 +12523,7 @@ namespace DRC
 
             alglib.lsfitstate state;
             alglib.lsfitreport rep;
-            double diffstep = 1e-12;
+            double diffstep = 1e-15;
 
             // Fitting without weights
             //alglib.lsfitcreatefg(Concentrations, Values.ToArray(), c, false, out state);
