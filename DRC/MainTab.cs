@@ -9337,8 +9337,8 @@ namespace DRC
             GlobalMin = MinValues - 0.05 * Math.Abs(MinValues);
 
             double epsf = 0;
-            double epsx = 1e-12; // 0.000000001;
-            double diffstep = 1e-15;
+            double epsx = 0; //1e-12; // 0.000000001;
+            double diffstep = 0; //1e-15;
 
             //double epsx = 1e-6;
             int maxits = 0;
