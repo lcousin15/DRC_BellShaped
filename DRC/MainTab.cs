@@ -11016,6 +11016,7 @@ namespace DRC
 
             string compound_id1 = compound_id.Replace(@"/", @"_");
             string compound_id2 = compound_id1.Replace(@"\", @"_");
+            compound_id2 = compound_id2.Replace("\t", "");
 
             string output_image = path + "/CPD_" + compound_id2 + "_" + descriptor_name + ".bmp";
 
